@@ -13,8 +13,8 @@ public class BoardManager : Singleton<BoardManager>
     
     private List<Slot> _slots;
     
-    const int RowCount = 8;
-    const int ColumnCount = 8;
+    const int RowCount = 6;
+    const int ColumnCount = 6;
     
     void Start()
     {
@@ -31,7 +31,7 @@ public class BoardManager : Singleton<BoardManager>
         }
         
         //set gradient and camera position 
-        Vector3 centerPosition = new Vector2((ColumnCount-1)/2,(RowCount-1)/2);
+        Vector3 centerPosition = new Vector2((ColumnCount-1)/2f,(RowCount-1)/2f);
         
         float ratio = ((float)Screen.height / (float)Screen.width);
         _camera.orthographicSize = ColumnCount * ( ratio / 2);
