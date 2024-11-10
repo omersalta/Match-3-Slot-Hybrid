@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61cece3456354524b5f60a67e7e307e3, type: 3}
   m_Name: Black
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4704806157402378420, guid: 65037e8fdfd52e64daee7b8c4cfc9c50, type: 3}
+  prefab: {fileID: 4704806157402378420, guid: 637cd827ecc094c4c94ec637c145a100, type: 3}
   sprite: {fileID: 21300000, guid: a743618e2540851468761159f6dd76cb, type: 3}
   color: 6

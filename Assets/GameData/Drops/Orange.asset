@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61cece3456354524b5f60a67e7e307e3, type: 3}
   m_Name: Orange
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4704806157402378420, guid: 28620f34552a57f4986336c467f285c4, type: 3}
+  prefab: {fileID: 4704806157402378420, guid: 637cd827ecc094c4c94ec637c145a100, type: 3}
   sprite: {fileID: 21300000, guid: d167d38c47f8b1c4bbff5f5006b33f78, type: 3}
   color: 5

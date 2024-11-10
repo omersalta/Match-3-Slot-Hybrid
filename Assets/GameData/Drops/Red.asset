@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61cece3456354524b5f60a67e7e307e3, type: 3}
   m_Name: Red
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4704806157402378420, guid: 74d8959c8030e7445819053d562eb95d, type: 3}
+  prefab: {fileID: 4704806157402378420, guid: 637cd827ecc094c4c94ec637c145a100, type: 3}
   sprite: {fileID: 21300000, guid: cd00e305387630f479ceca60016f1453, type: 3}
   color: 3
