@@ -1,11 +1,7 @@
-﻿using _Scripts;
-using DG.Tweening;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Tile : MonoBehaviour, ITile
 {
-    [SerializeField] private Slot _slot;
-    
     private SpriteRenderer _renderer;
     private Drop _currentDrop;
 
