@@ -46,20 +46,17 @@ public class Board : MonoBehaviour
                 Drop.SpawnDrop(GameManager.Instance.GetDropSO().PickRandom(), tile);
             }
         }
-        FindMatchesAll();
+        
         foreach (var slot in _slots)
         {
             foreach (var tile in slot._tiles)
             {
-                // CheckMatch(tile, tile.GetDrop().getColor());
-                InvalidateMathes(tile);
+                FixInvalidateDrop(tile);
             }
         }
-        
-
     }
     
-    public void InvalidateMathes (ITile tile)
+    public void FixInvalidateDrop (ITile tile)
     {
         Debug.Log(tile.GetCoordination() + "before :" + tile.GetDrop().getColor());
         while (CheckMatch(tile,Axis.all))

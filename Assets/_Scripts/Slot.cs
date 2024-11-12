@@ -76,7 +76,7 @@ namespace _Scripts
                 if (i == 0) //last item
                 {
                     nextTile = _tiles.LastOrDefault();
-                    FindObjectOfType<Board>().InvalidateMathes(tile);
+                    FindObjectOfType<Board>().FixInvalidateDrop(tile);
                     isHidden = true;
                 }
                 else

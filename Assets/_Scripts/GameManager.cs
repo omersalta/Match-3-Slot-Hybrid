@@ -33,10 +33,9 @@ public class GameManager : Singleton<GameManager>
         _maskObject.transform.position = centerPosition;
         _slotsGradient.GetComponent<SpriteRenderer>().size = new Vector2(ColumnCount, RowCount);
         _maskObject.localScale = new Vector3(ColumnCount, RowCount, 0);
-        speeeeeed = 0.03f;
+        speeeeeed = 0.1f;
         
         _board.Initialize(RowCount,ColumnCount,BoardYOffset);
-        
     }
     
 }
