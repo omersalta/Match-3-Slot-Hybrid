@@ -58,13 +58,13 @@ public class Board : MonoBehaviour
     
     public void FixInvalidateDrop (ITile tile)
     {
-        Debug.Log(tile.GetCoordination() + "before :" + tile.GetDrop().getColor());
+        Debug.Log(tile.GetCoordination() + "before :" + tile.GetDrop().GetColor());
         while (CheckMatch(tile,Axis.all))
         {
             var createdDrop = GameManager.Instance.GetDropSO().PickRandom();
             tile.GetDrop().ChangeDrop(createdDrop);
         }
-        Debug.Log(tile.GetCoordination() + "after :" + tile.GetDrop().getColor());
+        Debug.Log(tile.GetCoordination() + "after :" + tile.GetDrop().GetColor());
     }
     
     public void SpinButtonToggle()
@@ -136,7 +136,7 @@ public class Board : MonoBehaviour
     public bool CheckMatch(ITile tile,Axis axis)
     {
         HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
-        int matchCount = CheckMatchRecursive(tile.GetCoordination().x, tile.GetCoordination().y,axis, tile.GetDrop().getColor(), visited);
+        int matchCount = CheckMatchRecursive(tile.GetCoordination().x, tile.GetCoordination().y,axis, tile.GetDrop().GetColor(), visited);
         
         return matchCount >= 3;
     }
@@ -148,7 +148,7 @@ public class Board : MonoBehaviour
             return 0;
 
         // Hedef türle eşleşmiyorsa bu hücreyi dikkate alma
-        if (GetTileFromAll(x,y)?.GetDrop()?.getColor() != color)
+        if (GetTileFromAll(x,y)?.GetDrop()?.GetColor() != color)
             return 0;
 
         // Bu hücreyi ziyaret edilmiş olarak işaretle

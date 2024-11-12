@@ -59,7 +59,7 @@ public class Drop : MonoBehaviour
         _dropVisual.GetComponent<SpriteRenderer>().enabled = show;
     }
 
-    public dropColors getColor()
+    public dropColors GetColor()
     {
         return _dropSo.color;
     }

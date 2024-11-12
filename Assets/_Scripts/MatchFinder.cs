@@ -27,10 +27,10 @@ public class MatchFinder
     
     bool IsMatchAt(int x, int y,dropColors color)
     {
-        return (  y >= 2 && _board.GetTileFromAll(x, y - 1)?.GetDrop().getColor() == color &&
-                _board.GetTileFromAll(x, y - 2)?.GetDrop().getColor() == color  ) ||
-               (  x >= 2 && _board.GetTileFromAll(x - 1, y)?.GetDrop().getColor() == color &&
-                _board.GetTileFromAll(x, y - 1)?.GetDrop().getColor() == color  );
+        return (  y >= 2 && _board.GetTileFromAll(x, y - 1)?.GetDrop().GetColor() == color &&
+                _board.GetTileFromAll(x, y - 2)?.GetDrop().GetColor() == color  ) ||
+               (  x >= 2 && _board.GetTileFromAll(x - 1, y)?.GetDrop().GetColor() == color &&
+                _board.GetTileFromAll(x, y - 1)?.GetDrop().GetColor() == color  );
     }
 
     public List<Match> FindMatchesAll ()
@@ -54,7 +54,7 @@ public class MatchFinder
 
                     if (matchPositions.Count >= 3)
                     {
-                        Match match = new Match(_board.GetTileFromAllWithIndex(i,j).GetDrop().getColor());
+                        Match match = new Match(_board.GetTileFromAllWithIndex(i,j).GetDrop().GetColor());
                         match.positions.AddRange(matchPositions);
                         matches.Add(match);
                     }
@@ -74,7 +74,7 @@ public class MatchFinder
 
                     if (matchPositions.Count >= 3)
                     {
-                        Match match = new Match(_board.GetTileFromAllWithIndex(i,j).GetDrop().getColor());
+                        Match match = new Match(_board.GetTileFromAllWithIndex(i,j).GetDrop().GetColor());
                         match.positions.AddRange(matchPositions);
                         matches.Add(match);
                     }
@@ -93,10 +93,10 @@ public class MatchFinder
         visited[i, j] = true;
         matchPositions.Add(new Vector2Int(j, i)); // x = column (j), y = row (i)
 
-        dropColors currentColor = board.GetTileFromAllWithIndex(i, j).GetDrop().getColor();
+        dropColors currentColor = board.GetTileFromAllWithIndex(i, j).GetDrop().GetColor();
 
         // Move right
-        if (j + 1 < numCols && !visited[i, j + 1] && board.GetTileFromAllWithIndex(i, j+1).GetDrop().getColor() == currentColor)
+        if (j + 1 < numCols && !visited[i, j + 1] && board.GetTileFromAllWithIndex(i, j+1).GetDrop().GetColor() == currentColor)
         {
             FindHorizontalMatchAll(board, i, j + 1, visited, matchPositions);
         }
@@ -110,10 +110,10 @@ public class MatchFinder
         visited[i, j] = true;
         matchPositions.Add(new Vector2Int(j, i));
 
-        dropColors currentColor = board.GetTileFromAllWithIndex(i, j).GetDrop().getColor();
+        dropColors currentColor = board.GetTileFromAllWithIndex(i, j).GetDrop().GetColor();
 
         // Move down
-        if (i + 1 < numRows && !visited[i + 1, j] && board.GetTileFromAllWithIndex(i+1, j).GetDrop().getColor() == currentColor)
+        if (i + 1 < numRows && !visited[i + 1, j] && board.GetTileFromAllWithIndex(i+1, j).GetDrop().GetColor() == currentColor)
         {
             FindVerticalMatchAll(board, i + 1, j, visited, matchPositions);
         }
