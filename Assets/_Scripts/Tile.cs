@@ -8,17 +8,15 @@ public class Tile : MonoBehaviour, ITile
     
     private SpriteRenderer _renderer;
     private Drop _currentDrop;
-    
-    public Vector2Int coordinate { get; private set; }
+
+    private Vector2Int coordination;
     
     public Tile Initialize(int x, int y, Transform parent)
     {
-        coordinate = new Vector2Int(x, y);
+        coordination = new Vector2Int(x, y);
         transform.position = new Vector3(x, y-1, 0);
         transform.parent = parent;
         
-        
-        Drop.SpawnDrop(BoardManager.Instance.GetDropSO().PickRandom(), this);
         return this;
     }
 
@@ -53,7 +51,11 @@ public class Tile : MonoBehaviour, ITile
     {
         return transform.position;
     }
-    
+    public Vector2Int GetCoordination()
+    {
+        return coordination;
+    }
+
     public static Tile SpawnTile(Transform prefab)
     {
         Tile tile = Instantiate(prefab).GetComponent<Tile>();

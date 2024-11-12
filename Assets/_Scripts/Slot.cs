@@ -2,29 +2,34 @@
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace _Scripts
 {
     public class Slot : MonoBehaviour
     {
-
         private int _slotIndex = -1;
-        private int _rowCount = 0;
-        private int _stripSize = 0;
-        private Vector3 _cretionPoint, _endPoint;
+        private int _rowCount;
         
-        private List<ITile> _tiles;
+        public List<ITile> _tiles { get; private set; }
+        
+        private Sequence _slotSingleSpinSequence;
+        private bool _isSpinning = false;
+        private int _spinMinStopTile = 0;
+        readonly int  MinSpinStopTileOffset = 4;
+        
+        public UnityEvent<int> OnStopEvent;
 
         public Slot Initialize(int rowCount,int slotIndex,Transform _tilePrefab,Transform parent)
         {
             _slotIndex = slotIndex;
             _rowCount = rowCount;
-            _stripSize = 2 * _rowCount;
             transform.localPosition += new Vector3(slotIndex, 0, 0);
+            
             
             _tiles = new List<ITile>();
             
-            for (int i = 0; i < _stripSize; i++)
+            for (int i = 0; i < _rowCount; i++)
             {
                 _tiles.Add(Tile.SpawnTile(_tilePrefab).Initialize(_slotIndex, i, transform));
             }
@@ -32,14 +37,34 @@ namespace _Scripts
             transform.parent = parent;
             return this;
         }
-        
-        public void StopSpin()
+
+        public void SingleSpin()
         {
+            _slotSingleSpinSequence = DOTween.Sequence();
+            _slotSingleSpinSequence.OnComplete(() =>
+            {
+                if (_isSpinning)
+                {
+                    SingleSpin();
+                }
+                else
+                {
+                    bool canStop = _spinMinStopTile <= 0 && _tiles.All(tile => GameManager.Instance.Board.CheckMatch(tile,Board.Axis.LeftAndDown));
+                    
+                    if (canStop)
+                    {
+                        SingleSpin();
+                        _spinMinStopTile--;
+                    }
+                    else
+                    {
+                        Debug.Log(_slotIndex + " Slot is stoped");
+                        OnStopEvent?.Invoke(_slotIndex);
+                    }
+                }
+            });
             
-        }
-        
-        public void StartSpin(Sequence sequence)
-        {
+            
             bool isHidden = false;
             
             for (int i = 0; i < _tiles.Count; i++)
@@ -47,30 +72,32 @@ namespace _Scripts
                 ITile nextTile = null;
                 ITile tile = _tiles[i];
                 isHidden = false;
-                
+
                 if (i == 0) //last item
                 {
                     nextTile = _tiles.LastOrDefault();
+                    FindObjectOfType<Board>().InvalidateMathes(tile);
                     isHidden = true;
                 }
                 else
                 {
-                    nextTile = _tiles[i-1];
+                    nextTile = _tiles[i - 1];
                 }
-                
-                tile.GetDrop().Move(nextTile, sequence,isHidden);
+                tile.GetDrop().Move(nextTile, _slotSingleSpinSequence, isHidden);
                 tile.ClearDrop();
             }
         }
-
-        public void CreateDrop()
+        
+        public void RunSlotSpin()
         {
-            
+            _isSpinning = true;
+            SingleSpin();
         }
-
-        public void FillTiles()
+        
+        public void TryToStop()
         {
-            
+            _isSpinning = false;
+            _spinMinStopTile = MinSpinStopTileOffset;
         }
         
         public static Slot SpawnSlot(Transform prefab)

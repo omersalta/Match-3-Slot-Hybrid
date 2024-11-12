@@ -198,7 +198,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d9d48c7a79838454686e110c8e7a5c5f, type: 3}
-  m_Color: {r: 1, g: 0.3726415, b: 0.3726415, a: 0.050980393}
+  m_Color: {r: 1, g: 0.8254717, b: 0.8254717, a: 0.12156863}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -343,8 +343,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2109750604}
-        m_TargetAssemblyTypeName: BoardManager, Assembly-CSharp
+      - m_Target: {fileID: 2109750605}
+        m_TargetAssemblyTypeName: Board, Assembly-CSharp
         m_MethodName: SpinButtonToggle
         m_Mode: 1
         m_Arguments:
@@ -452,7 +452,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 91c421463e19de544a9579753432acc3, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.48235294}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
@@ -774,51 +774,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &886400804
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 886400806}
-  - component: {fileID: 886400805}
-  m_Layer: 0
-  m_Name: ObjectPoolInstaller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &886400805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 886400804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a201a35959c9eb4299beb4d840984af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pools: []
---- !u!4 &886400806
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 886400804}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1439185295
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,6 +875,65 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1915233224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1915233225}
+  - component: {fileID: 1915233226}
+  m_Layer: 0
+  m_Name: BoardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1915233225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915233224}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.5, y: 2.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1915233226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915233224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 967cbfc7044d35d48835a5a9976e3b48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroy: 0
+  _slotsGradient: {fileID: 362356187}
+  _maskObject: {fileID: 103251958}
+  _dropTypes:
+  - {fileID: 11400000, guid: a823bdf881e50e64aa6be458dc3173f2, type: 2}
+  - {fileID: 11400000, guid: 817d70663445fe149a39c70ac817938e, type: 2}
+  - {fileID: 11400000, guid: 8f684a298fe180449b08d4ca240c3dcd, type: 2}
+  - {fileID: 11400000, guid: 7f7855fafa4e0054ba474ae70fd0863b, type: 2}
+  - {fileID: 11400000, guid: 89d5ca3f60895bc4eb4139a624c65fa2, type: 2}
+  - {fileID: 11400000, guid: 837ef3c2a72956a48a7546b2d3e274e3, type: 2}
+  _camera: {fileID: 519420031}
+  _board: {fileID: 2109750605}
+  RowCount: 5
+  ColumnCount: 5
+  BoardYOffset: 1
 --- !u!1 &2025129040
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,7 +1078,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2109750603}
-  - component: {fileID: 2109750604}
+  - component: {fileID: 2109750605}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -1089,7 +1103,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2109750604
+--- !u!114 &2109750605
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1098,21 +1112,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2109750602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 967cbfc7044d35d48835a5a9976e3b48, type: 3}
+  m_Script: {fileID: 11500000, guid: ff280828e4847324c99b0ba95e3c1716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dontDestroy: 0
   _tilePrefab: {fileID: 178266378269605463, guid: bcc99828c864fe0438d7c9f9e94c7368, type: 3}
   _slotPrefab: {fileID: 9178350311849458203, guid: 4c28753af7a781844b05805ed1a6b9a8, type: 3}
-  _slotsGradient: {fileID: 362356187}
-  _maskObject: {fileID: 103251958}
-  _dropList:
-  - {fileID: 11400000, guid: a823bdf881e50e64aa6be458dc3173f2, type: 2}
-  - {fileID: 11400000, guid: 817d70663445fe149a39c70ac817938e, type: 2}
-  - {fileID: 11400000, guid: 8f684a298fe180449b08d4ca240c3dcd, type: 2}
-  - {fileID: 11400000, guid: 7f7855fafa4e0054ba474ae70fd0863b, type: 2}
-  - {fileID: 11400000, guid: 89d5ca3f60895bc4eb4139a624c65fa2, type: 2}
-  - {fileID: 11400000, guid: 837ef3c2a72956a48a7546b2d3e274e3, type: 2}
-  - {fileID: 11400000, guid: b0472aa2c797db548b5d864870a69ada, type: 2}
-  - {fileID: 11400000, guid: 9711477a9e2a5234794db70f198c64a2, type: 2}
-  _camera: {fileID: 519420031}

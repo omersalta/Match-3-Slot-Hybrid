@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+
 public class Drop : MonoBehaviour
 {
     [SerializeField] private DropSO _dropSo;
@@ -25,26 +26,45 @@ public class Drop : MonoBehaviour
         _tile = null;
         if (isHiddenMove)
         {
-            _dropVisual.GetComponent<SpriteRenderer>().enabled = false;
+            ShowSprite(false);
         }
 
         sequence.Join(
-            transform.DOMove(target.GetPosition(), BoardManager.Instance.speeeeeed).OnComplete(() => {
+            transform.DOMove(target.GetPosition(), GameManager.Instance.speeeeeed).OnComplete(() => {
                 SetTile(target);
-                _dropVisual.GetComponent<SpriteRenderer>().enabled = true;
+                ShowSprite();
             }).SetEase(Ease.Linear)
         );
+    }
+
+    public void ChangeDrop(DropSO DropSO)
+    {
+        _dropVisual.GetComponent<SpriteRenderer>().sprite = DropSO.sprite;
+        _dropSo = DropSO;
     }
 
     public static Drop SpawnDrop(DropSO DropSO, ITile tile)
     {
         Drop drop = Instantiate(DropSO.prefab).GetComponent<Drop>();
         drop._dropVisual.GetComponent<SpriteRenderer>().sprite = DropSO.sprite;
+        drop._dropSo = DropSO;
         drop.SetTile(tile);
+        
         drop.transform.position = tile.GetPosition();
         return drop;
     }
 
+    public void ShowSprite(bool show = true)
+    {
+        _dropVisual.GetComponent<SpriteRenderer>().enabled = show;
+    }
+
+    public dropColors getColor()
+    {
+        return _dropSo.color;
+    }
+
+    
 }
 
 

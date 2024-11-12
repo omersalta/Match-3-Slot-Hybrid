@@ -10,9 +10,11 @@ public interface ITile
     public bool HasDrop();
 
     public Drop GetDrop();
-
+    
     public void ClearDrop();
     
     public Vector3 GetPosition();
-    
+
+    public Vector2Int GetCoordination();
+
 }
