@@ -44,19 +44,14 @@ namespace _Scripts
             _slotSingleSpinSequence = DOTween.Sequence();
             _slotSingleSpinSequence.OnComplete(() =>
             {
+                
                 if (_isSpinning)
                 {
                     SingleSpin();
                 }
                 else
                 {
-                    bool canStop = _spinMinStopTile <= 0 && !_tiles.Any(tile => GameManager.Instance.Board.CheckMatch(tile,Board.Axis.LeftAndVertical));
-                    
-                    if (_spinMinStopTile <= 0)
-                    {
-                        Debug.Log("result : " + !_tiles.Any(tile => GameManager.Instance.Board.CheckMatch(tile,Board.Axis.LeftAndVertical)));
-                    }
-                    
+                    bool canStop = _spinMinStopTile <= 0 && !_tiles.Any(tile => GameManager.Instance.Board.CheckMatch(tile, Board.Axis.LeftAndVertical));
                     
                     if (canStop)
                     {
@@ -84,6 +79,7 @@ namespace _Scripts
                 {
                     nextTile = _tiles.LastOrDefault();
                     isHidden = true;
+                    tile.GetDrop().ChangeDrop();
                 }
                 else
                 {

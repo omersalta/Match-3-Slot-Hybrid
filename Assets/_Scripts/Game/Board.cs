@@ -54,6 +54,17 @@ public class Board : MonoBehaviour
         }
         
     }
+
+    public void LogAllTileDrops()
+    {
+        foreach (var slot in _slots)
+        {
+            foreach (var tile in slot._tiles)
+            {
+                Debug.Log(tile.GetCoordination() + ", " + tile.GetDrop()?.GetColor());
+            }
+        }
+    }
     
     public void SpinButtonToggle()
     {
