@@ -12,18 +12,20 @@ public class Board : MonoBehaviour
     
     public int RowCount { get; private set; }
     public int ColumnCount { get; private set; }
-    public int BoardYOffset { get; private set; }
 
     public UnityEvent OnSpinStart;
     public UnityEvent OnSpinStop;
     public UnityEvent OnSpinTryToStop;
+    private Dictionary<DropSO, int> _dropTypes = new Dictionary<DropSO, int>();
     
-    public void Initialize(Transform slotPrefab,Transform tilePrefab, int rowCount = 5, int columnCount = 5, int boardYOffset = 1)
+    public void Initialize(Transform slotPrefab,Transform tilePrefab, int rowCount = 5, int columnCount = 5)
     {
         RowCount = rowCount;
         ColumnCount = columnCount;
         
         _slots = new List<Slot>(ColumnCount);
+        
+        InitializeDropTypes(GameManager.Instance.DropTypes);
         
         //Create Tiles
         for (int j = 0; j < ColumnCount; j++)
@@ -38,9 +40,9 @@ public class Board : MonoBehaviour
         {
             foreach (var tile in slot._tiles)
             {
-                var drop = Drop.SpawnDrop(GameManager.Instance.DropTypes.PickRandom());
-                drop.SetTile(tile);
-                drop.transform.position = tile.GetPosition();
+                SpawnDrop(tile);
+                Drop drop = tile.GetDrop();
+                _dropTypes[drop.DropSO] = _dropTypes.GetValueOrDefault(drop.DropSO, 0) + 1;
             }
         }
         
@@ -54,13 +56,52 @@ public class Board : MonoBehaviour
         
     }
 
+    public void InitializeDropTypes(List<DropSO> allDropTypes)
+    {
+        foreach (var dropSo in allDropTypes)
+        {
+            if (!_dropTypes.ContainsKey(dropSo))
+                _dropTypes[dropSo] = 0;
+        }
+    }
+
+    private DropSO GetRandomDropType()
+    {
+        var incompleteDropTypes = _dropTypes
+            .Where(pair => pair.Value < 3)
+            .Select(pair => pair.Key)
+            .ToList();
+
+        DropSO selectedDropSO;
+
+        if (incompleteDropTypes.Any())  
+        {
+            selectedDropSO = incompleteDropTypes.PickRandom();
+        }
+        else
+        {
+            selectedDropSO = _dropTypes.Keys.ToList().PickRandom();
+        }
+        
+        return selectedDropSO;
+    }
+
+    public void SpawnDrop(ITile tile)
+    {
+        var dropColor = GetRandomDropType();
+        
+        var drop = Drop.SpawnDrop(dropColor);
+        drop.SetTile(tile);
+        drop.transform.position = tile.GetPosition();
+    }
+
     public void LogAllTileDrops()
     {
         foreach (var slot in _slots)
         {
             foreach (var tile in slot._tiles)
             {
-                Debug.Log(tile.GetCoordination() + ", " + tile.GetDrop()?.GetColor());
+                Debug.Log(tile.GetCoordination() + ", " + tile.GetDrop()?.DropSO.color);
             }
         }
     }
@@ -110,11 +151,18 @@ public class Board : MonoBehaviour
     {
         while (CheckMatch(tile,Axis.all))
         {
-            var createdDrop = GameManager.Instance.DropTypes.PickRandom();
-            tile.GetDrop().ChangeDrop(createdDrop);
+            var createdDrop = GetRandomDropType();
+            ChangeDrop(tile.GetDrop(), createdDrop);
         }
     }
     
+    void ChangeDrop(Drop drop, DropSO dropSO)
+    {
+        _dropTypes[drop.DropSO]--;
+        drop.ChangeColor(dropSO);
+        _dropTypes[dropSO]++;
+    }
+
     public bool CheckMatch(ITile tile,Axis axis)
     {
         HashSet<Vector2Int> visited = new HashSet<Vector2Int>();

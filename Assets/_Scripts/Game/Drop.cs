@@ -4,6 +4,7 @@ using UnityEngine;
 public class Drop : MonoBehaviour
 {
     [SerializeField] private DropSO _dropSo;
+    public DropSO DropSO => _dropSo;
     [SerializeField] private GameObject _dropVisual;
 
     private ITile _tile;
@@ -35,7 +36,7 @@ public class Drop : MonoBehaviour
         );
     }
 
-    public void ChangeDrop(DropSO dropSO)
+    public void ChangeColor(DropSO dropSO)
     {
         _dropVisual.GetComponent<SpriteRenderer>().sprite = dropSO.sprite;
         _dropSo = dropSO;

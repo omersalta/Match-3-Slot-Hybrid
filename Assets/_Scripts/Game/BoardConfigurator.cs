@@ -11,9 +11,9 @@ namespace _Scripts
         
         public Vector3 CenterPosition {  get; private set; }
         
-        public void Initialize(int columnCount,int rowCount, int boardYOffset)
+        public void Initialize(int columnCount,int rowCount)
         {
-             CenterPosition = new Vector2((columnCount-boardYOffset)/2f,(rowCount-boardYOffset)/2f);
+             CenterPosition = new Vector2((columnCount-1)/2f,(rowCount-1)/2f);
             
              //Set Board Elements Settings
             _slotsGradient.transform.position = CenterPosition;

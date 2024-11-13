@@ -1007,6 +1007,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7f7855fafa4e0054ba474ae70fd0863b, type: 2}
   - {fileID: 11400000, guid: 89d5ca3f60895bc4eb4139a624c65fa2, type: 2}
   - {fileID: 11400000, guid: 837ef3c2a72956a48a7546b2d3e274e3, type: 2}
+  - {fileID: 11400000, guid: 9711477a9e2a5234794db70f198c64a2, type: 2}
   _tilePrefab: {fileID: 178266378269605463, guid: bcc99828c864fe0438d7c9f9e94c7368, type: 3}
   _slotPrefab: {fileID: 9178350311849458203, guid: 4c28753af7a781844b05805ed1a6b9a8, type: 3}
   _configurator: {fileID: 2109750606}
