@@ -10,7 +10,6 @@ public class Board : MonoBehaviour
     private List<Slot> _slots;
     private bool _isSpinning = false;
     
-    public int VisibleRowCount { get; private set; }
     public int RowCount { get; private set; }
     public int ColumnCount { get; private set; }
     public int BoardYOffset { get; private set; }
@@ -21,10 +20,8 @@ public class Board : MonoBehaviour
     
     public void Initialize(Transform slotPrefab,Transform tilePrefab, int rowCount = 5, int columnCount = 5, int boardYOffset = 1)
     {
-        VisibleRowCount = rowCount;
-        RowCount = VisibleRowCount+2;
+        RowCount = rowCount;
         ColumnCount = columnCount;
-        BoardYOffset = boardYOffset;
         
         _slots = new List<Slot>(ColumnCount);
         
@@ -41,7 +38,9 @@ public class Board : MonoBehaviour
         {
             foreach (var tile in slot._tiles)
             {
-                Drop.SpawnDrop(GameManager.Instance.DropTypes.PickRandom(), tile);
+                var drop = Drop.SpawnDrop(GameManager.Instance.DropTypes.PickRandom());
+                drop.SetTile(tile);
+                drop.transform.position = tile.GetPosition();
             }
         }
         
@@ -130,7 +129,7 @@ public class Board : MonoBehaviour
             return 0;
 
         // Ignore this cell if it does not match the target type
-        if (GetTileFromAll(x,y)?.GetDrop()?.GetColor() != color)
+        if (GetTile(x,y)?.GetDrop()?.GetColor() != color)
             return 0;
 
         // every called tiles added to visited
@@ -173,10 +172,10 @@ public class Board : MonoBehaviour
     
     public ITile GetTileFromAllWithIndex(int row, int column)
     {
-        return GetTileFromAll(column, row);
+        return GetTile(column, row);
     }
     
-    public ITile GetTileFromAll(int x, int y)
+    public ITile GetTile(int x, int y)
     {
         ITile tile = null;
         
@@ -191,18 +190,6 @@ public class Board : MonoBehaviour
         return tile;
     }
     
-    public ITile GetTile(int x, int boardY)
-    {
-        int y = boardY + BoardYOffset;
-        
-        if (y < BoardYOffset  || y >= VisibleRowCount + BoardYOffset)
-        {
-            Debug.LogWarning("invalid index :" + x + "," + y );
-            return null;
-        }
-        return GetTileFromAllWithIndex(x, y);
-    }
-
     public enum Axis
     {
         left,

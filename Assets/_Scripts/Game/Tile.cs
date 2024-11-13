@@ -11,7 +11,7 @@ public class Tile : MonoBehaviour, ITile
     {
         Debug.Log(x +"," +y);
         coordination = new Vector2Int(x, y);
-        transform.position = new Vector3(x, y-1, 0);
+        transform.position = new Vector3(x, y, 0);
         transform.parent = parent;
         
         return this;

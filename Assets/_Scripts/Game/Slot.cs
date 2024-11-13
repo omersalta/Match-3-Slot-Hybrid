@@ -79,7 +79,6 @@ namespace _Scripts
                 {
                     nextTile = _tiles.LastOrDefault();
                     isHidden = true;
-                    tile.GetDrop().ChangeDrop();
                 }
                 else
                 {

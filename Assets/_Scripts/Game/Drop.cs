@@ -41,14 +41,11 @@ public class Drop : MonoBehaviour
         _dropSo = dropSO;
     }
 
-    public static Drop SpawnDrop(DropSO DropSO, ITile tile)
+    public static Drop SpawnDrop(DropSO DropSO)
     {
         Drop drop = Instantiate(DropSO.prefab).GetComponent<Drop>();
         drop._dropVisual.GetComponent<SpriteRenderer>().sprite = DropSO.sprite;
         drop._dropSo = DropSO;
-        drop.SetTile(tile);
-        
-        drop.transform.position = tile.GetPosition();
         return drop;
     }
 
@@ -61,7 +58,6 @@ public class Drop : MonoBehaviour
     {
         return _dropSo.color;
     }
-
     
 }
 

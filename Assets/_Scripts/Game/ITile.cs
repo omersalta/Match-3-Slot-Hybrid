@@ -3,8 +3,6 @@ using UnityEngine;
 
 public interface ITile
 {
-    public Tile Initialize(int x, int y, Transform parent);
-    
     public void SetDrop(Drop drop);
     
     public bool HasDrop();
