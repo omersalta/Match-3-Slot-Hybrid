@@ -9,6 +9,7 @@ public class Tile : MonoBehaviour, ITile
     
     public Tile Initialize(int x, int y, Transform parent)
     {
+        Debug.Log(x +"," +y);
         coordination = new Vector2Int(x, y);
         transform.position = new Vector3(x, y-1, 0);
         transform.parent = parent;

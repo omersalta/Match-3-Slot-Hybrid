@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 public class Drop : MonoBehaviour
@@ -30,17 +28,17 @@ public class Drop : MonoBehaviour
         }
 
         sequence.Join(
-            transform.DOMove(target.GetPosition(), GameManager.Instance.speeeeeed).OnComplete(() => {
+            transform.DOMove(target.GetPosition(), GameManager.Instance.SingleDropTime).OnComplete(() => {
                 SetTile(target);
                 ShowSprite();
             }).SetEase(Ease.Linear)
         );
     }
 
-    public void ChangeDrop(DropSO DropSO)
+    public void ChangeDrop(DropSO dropSO)
     {
-        _dropVisual.GetComponent<SpriteRenderer>().sprite = DropSO.sprite;
-        _dropSo = DropSO;
+        _dropVisual.GetComponent<SpriteRenderer>().sprite = dropSO.sprite;
+        _dropSo = dropSO;
     }
 
     public static Drop SpawnDrop(DropSO DropSO, ITile tile)

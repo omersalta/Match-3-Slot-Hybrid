@@ -9,6 +9,7 @@ namespace _Scripts
     public class Slot : MonoBehaviour
     {
         private int _slotIndex = -1;
+        public int SlotIndex => _slotIndex;
         private int _rowCount;
         
         public List<ITile> _tiles { get; private set; }
@@ -49,17 +50,23 @@ namespace _Scripts
                 }
                 else
                 {
-                    bool canStop = _spinMinStopTile <= 0 && _tiles.All(tile => GameManager.Instance.Board.CheckMatch(tile,Board.Axis.LeftAndDown));
+                    bool canStop = _spinMinStopTile <= 0 && !_tiles.Any(tile => GameManager.Instance.Board.CheckMatch(tile,Board.Axis.LeftAndVertical));
+                    
+                    if (_spinMinStopTile <= 0)
+                    {
+                        Debug.Log("result : " + !_tiles.Any(tile => GameManager.Instance.Board.CheckMatch(tile,Board.Axis.LeftAndVertical)));
+                    }
+                    
                     
                     if (canStop)
                     {
-                        SingleSpin();
-                        _spinMinStopTile--;
+                        Debug.Log(_slotIndex + " Slot is stoped");
+                        OnStopEvent?.Invoke(_slotIndex);
                     }
                     else
                     {
-                        Debug.Log(_slotIndex + " Slot is stoped");
-                        OnStopEvent?.Invoke(_slotIndex);
+                        SingleSpin();
+                        _spinMinStopTile--;
                     }
                 }
             });
