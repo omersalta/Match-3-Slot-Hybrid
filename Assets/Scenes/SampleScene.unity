@@ -1006,8 +1006,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8f684a298fe180449b08d4ca240c3dcd, type: 2}
   - {fileID: 11400000, guid: 7f7855fafa4e0054ba474ae70fd0863b, type: 2}
   - {fileID: 11400000, guid: 89d5ca3f60895bc4eb4139a624c65fa2, type: 2}
-  - {fileID: 11400000, guid: 837ef3c2a72956a48a7546b2d3e274e3, type: 2}
-  - {fileID: 11400000, guid: 9711477a9e2a5234794db70f198c64a2, type: 2}
   _tilePrefab: {fileID: 178266378269605463, guid: bcc99828c864fe0438d7c9f9e94c7368, type: 3}
   _slotPrefab: {fileID: 9178350311849458203, guid: 4c28753af7a781844b05805ed1a6b9a8, type: 3}
   _configurator: {fileID: 2109750606}
@@ -1015,6 +1013,117 @@ MonoBehaviour:
   _rowCount: 5
   _cColumnCount: 5
   SingleDropTime: 0.1
+--- !u!1 &1994131113
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1994131114}
+  - component: {fileID: 1994131115}
+  m_Layer: 0
+  m_Name: InputState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1994131114
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994131113}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1994131115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1994131113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20dfa4392c9d46e995a3b0a62251aa67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swipeThreshold: 50
+  onTap:
+    m_PersistentCalls:
+      m_Calls: []
+  onSwipeLeft:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2109750605}
+        m_TargetAssemblyTypeName: Board, Assembly-CSharp
+        m_MethodName: Swipe
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSwipeRight:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2109750605}
+        m_TargetAssemblyTypeName: Board, Assembly-CSharp
+        m_MethodName: Swipe
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSwipeUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2109750605}
+        m_TargetAssemblyTypeName: Board, Assembly-CSharp
+        m_MethodName: Swipe
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSwipeDown:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2109750605}
+        m_TargetAssemblyTypeName: Board, Assembly-CSharp
+        m_MethodName: Swipe
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMouseUp:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2109750602
 GameObject:
   m_ObjectHideFlags: 0
