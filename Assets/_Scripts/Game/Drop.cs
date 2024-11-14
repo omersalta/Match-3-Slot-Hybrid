@@ -20,7 +20,7 @@ public class Drop : MonoBehaviour
         _tile.SetDrop(this);
     }
 
-    public void Move(ITile target,Sequence sequence, bool isHiddenMove = false)
+    public void Move(ITile target,Sequence sequence,float duration, bool isHiddenMove = false)
     {
         _tile = null;
         if (isHiddenMove)
@@ -29,7 +29,7 @@ public class Drop : MonoBehaviour
         }
 
         sequence.Join(
-            transform.DOMove(target.GetPosition(), GameManager.Instance.SingleDropTime).OnComplete(() => {
+            transform.DOMove(target.GetPosition(), duration).OnComplete(() => {
                 SetTile(target);
                 ShowSprite();
             }).SetEase(Ease.Linear)
@@ -58,6 +58,13 @@ public class Drop : MonoBehaviour
     public dropColors GetColor()
     {
         return _dropSo.color;
+    }
+
+    public void Explode()
+    {
+        _tile?.ClearDrop();
+        SetTile(null);
+        //todo explode animation
     }
     
 }

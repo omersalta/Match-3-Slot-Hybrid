@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using _Scripts.Game;
+using DG.Tweening;
 using UnityEngine;
 
 namespace _Scripts

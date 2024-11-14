@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using _Scripts.Game;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,6 +12,7 @@ namespace _Scripts
     {
         private int _slotIndex = -1;
         public int SlotIndex => _slotIndex;
+        
         private int _rowCount;
         
         public List<ITile> _tiles { get; private set; }
@@ -20,6 +23,13 @@ namespace _Scripts
         readonly int  MinSpinStopTileOffset = 4;
         
         public UnityEvent<int> OnStopEvent;
+
+        private static Board _board;
+
+        private void Awake()
+        {
+            _board = GameManager.Instance.Board;
+        }
 
         public Slot Initialize(int rowCount,int slotIndex,Transform _tilePrefab,Transform parent)
         {
@@ -84,7 +94,7 @@ namespace _Scripts
                 {
                     nextTile = _tiles[i - 1];
                 }
-                tile.GetDrop().Move(nextTile, _slotSingleSpinSequence, isHidden);
+                tile.GetDrop().Move(nextTile, _slotSingleSpinSequence,GameManager.Instance.SingleDropTime, isHidden);
                 tile.ClearDrop();
             }
         }
