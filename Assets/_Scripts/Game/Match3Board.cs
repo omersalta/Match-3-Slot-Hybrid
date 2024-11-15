@@ -14,20 +14,15 @@ namespace _Scripts.Game
         private Sequence _processActionSequence;
         private bool _isAnimating = false;
         private bool _canSwipe = false;
+        private bool _isFirstSwipeDone = false;
         protected MatchChecker _matchChecker;
-
+        public UnityEvent OnMatch3Start;
+        
         public void Initialize(Transform slotPrefab, Transform tilePrefab, int rowCount = 5, int columnCount = 5)
         {
             base.Initialize(slotPrefab, tilePrefab, rowCount, columnCount);
             _matchChecker = new MatchChecker(this, rowCount, columnCount);
-            
-            foreach (var slot in _slots)
-            {
-                foreach (ITile tile in slot.Tiles)
-                {
-                    FixInvalidateDrop(tile);
-                }
-            }
+            FixBoard();
         }
 
         private void Start()
@@ -38,9 +33,24 @@ namespace _Scripts.Game
 
         public void Reset()
         {
+            base.Reset();
+            FixBoard();
             _isAnimating = false;
             _canSwipe = false;
+            _isFirstSwipeDone = false;
             _swipeActions.Clear();
+            _isSpinning = false;
+        }
+
+        void FixBoard()
+        {
+            foreach (var slot in _slots)
+            {
+                foreach (ITile tile in slot.Tiles)
+                {
+                    FixInvalidateDrop(tile);
+                }
+            }
         }
         
         void FixInvalidateDrop (ITile tile)
@@ -55,6 +65,8 @@ namespace _Scripts.Game
         {
             if (!_canSwipe) return;
 
+   
+            
             // Screen position to world position.
             Vector3 wPos = Camera.main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, Camera.main.nearClipPlane));
 
@@ -63,7 +75,13 @@ namespace _Scripts.Game
 
             ITile targetTile = GetTile(Mathf.RoundToInt(wPos.x + dir.x), Mathf.RoundToInt(wPos.y + dir.y));
             if (targetTile == null || targetTile.GetDrop() == null) return;
-
+            
+            if (_isFirstSwipeDone == false)
+            {
+                _isFirstSwipeDone = true;
+                OnMatch3Start?.Invoke();
+            }
+            
             var action = new KeyValuePair<ITile, ITile>(sourceTile, targetTile);
             _swipeActions.Add(action);
 
@@ -130,7 +148,7 @@ namespace _Scripts.Game
                             ProcessNextAction();
                         }
                     });*/
-                    GameManager.Instance.OnGameEnd();
+                    GameManager.Instance.OnGameWin();
                 }
                 else
                 {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace _Scripts.Game
     public class Board : MonoBehaviour
     {
         protected List<ISlot> _slots;
-        private bool _isSpinning = false;
+        protected bool _isSpinning = false;
 
         public int RowCount { get; private set; }
         public int ColumnCount { get; private set; }
@@ -23,10 +24,9 @@ namespace _Scripts.Game
         {
             RowCount = rowCount;
             ColumnCount = columnCount;
-            _randomDropCreator = new RandomDropCreator(GameManager.Instance.DropTypes);
             
             _slots = new List<ISlot>(ColumnCount);
-
+            
             //spawn slots (slots spawn own tiles)
             for (int j = 0; j < ColumnCount; j++)
             {
@@ -35,17 +35,40 @@ namespace _Scripts.Game
                 _slots.Add(slot);
                 slot.OnStopEvent.AddListener(OnSlotStop);
             }
+            
+            GenerateBoard();
+        }
 
+        protected void Reset()
+        {
+            _isSpinning = false;
+            
+            GenerateBoard();
+        }
+
+        private void GenerateBoard()
+        {
+            _randomDropCreator = new RandomDropCreator(GameManager.Instance.DropTypes);
+
+            foreach (var slot in _slots)
+            {
+                foreach (var tile in slot.Tiles)
+                { 
+                    tile.GetDrop()?.Kill();
+                }
+            }
+            
             //spawn Drops
             foreach (var slot in _slots)
             {
                 foreach (var tile in slot.Tiles)
                 {
+                    
                     _randomDropCreator.SpawnDrop(tile);
                 }
             }
         }
-        
+
         public virtual bool CanStop(ISlot slot)
         {
             return true;

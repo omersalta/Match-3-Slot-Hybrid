@@ -13,7 +13,12 @@ public class CongratsPopup : MonoBehaviour
     [SerializeField] private SpriteRenderer _popupBG;
     private Vector3 _popupBGfirstValue;
 
-    private void Start()
+    public void Initialize()
+    {
+        Reset();
+    }
+    
+    public void Reset ()
     {
         _viusals.gameObject.SetActive(false);
         _viusals1.gameObject.SetActive(false);

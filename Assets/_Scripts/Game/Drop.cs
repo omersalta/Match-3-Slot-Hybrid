@@ -71,9 +71,11 @@ public class Drop : MonoBehaviour
         ShowSprite(false);
         //todo explode animation
     }
-    
-    
-    
+
+    public void Kill()
+    {
+        Destroy(gameObject);
+    } 
     
     //Private Methods....................................
     private void ShowSprite(bool show = true)

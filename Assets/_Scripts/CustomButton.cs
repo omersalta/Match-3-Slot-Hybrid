@@ -17,11 +17,10 @@ public class CustomButton : MonoBehaviour
     {
         if (Enable)
         {
-            onClickEvent?.Invoke();
-            Vector2 size = GetComponentInParent<SpriteRenderer>().size;
             transform.DOScale(transform.localScale / 2, 0.2f).OnComplete(() =>
             {
                 transform.DOScale(Vector3.one, 0.2f);
+                onClickEvent?.Invoke();
             });
         }
             

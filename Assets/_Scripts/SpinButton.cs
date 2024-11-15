@@ -1,4 +1,5 @@
-﻿using _Scripts.Game;
+﻿using System;
+using _Scripts.Game;
 using DG.Tweening;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace _Scripts
 {
     public class SpinButton : CustomButton
     {
-        [SerializeField] private Board _board;
+        [SerializeField] private Match3Board _board;
         
         private void Start()
         {
@@ -15,6 +16,7 @@ namespace _Scripts
             _board.OnSpinStart.AddListener(OnSpinStart);
             _board.OnSpinStop.AddListener(OnSpinStop);
             _board.OnSpinTryToStop.AddListener(OnSpinTryStop);
+            _board.OnMatch3Start.AddListener(OnMatch3);
         }
 
         private void OnSpinStart ()
@@ -22,7 +24,7 @@ namespace _Scripts
             Enable = false;
             defaultColor = Color.grey * 0.6f;
             SetText("wait");
-            DOVirtual.DelayedCall(GameManager.Instance.SingleDropTime * 25f, () =>
+            DOVirtual.DelayedCall(GameManager.Instance.SingleDropTime * 6f, () =>
             {
                 SetText("Press to Stop");
                 Enable = true;
@@ -46,10 +48,16 @@ namespace _Scripts
 
         private void OnMatch3()
         {
-            SetText("Match-3");
+            SetText("");
             Enable = false;
-            
-            SetColor(Color.black);
+            SetColor(new Color(0,0,0,0));
+        }
+
+        public void Reset()
+        {
+            SetText("Spin");
+            Enable = true;
+            SetColor(Color.green * 0.9f);
         }
     }
 }
