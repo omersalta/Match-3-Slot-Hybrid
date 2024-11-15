@@ -10,7 +10,6 @@ namespace _Scripts
     public class Slot : MonoBehaviour,ISlot
     {
         private int _slotIndex = -1;
-        public int SlotIndex => _slotIndex;
         public List<ITile> Tiles { get; private set; }
         public UnityEvent<int> OnStopEvent { get; private set; } = new UnityEvent<int>();
 
@@ -65,8 +64,6 @@ namespace _Scripts
         }
         
         
-        //Private Methods........
-        
         private void SingleSpinRecursion()
         {
             _slotSingleSpinSequence = DOTween.Sequence();
@@ -109,6 +106,7 @@ namespace _Scripts
                 {
                     nextTile = Tiles.LastOrDefault();
                     isHidden = true;
+                    _board.ChangeDrop(tile);
                 }
                 else
                 {
@@ -121,7 +119,6 @@ namespace _Scripts
 
         private void StopSpin()
         {
-            Debug.Log(_slotIndex + " Slot is stoped");
             OnStopEvent?.Invoke(_slotIndex);
         }
     }

@@ -6,7 +6,6 @@ namespace _Scripts.Game
 {
     public interface ISlot
     {
-        int SlotIndex { get; }
         List<ITile> Tiles { get; }
         UnityEvent<int> OnStopEvent { get; }
     

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
@@ -11,7 +10,6 @@ namespace _Scripts.Game
     {
         private List<KeyValuePair<ITile, ITile>> _swipeActions = new List<KeyValuePair<ITile, ITile>>();
         private Sequence _swipeAnimationSequence;
-        private Sequence _processActionSequence;
         private bool _isAnimating = false;
         private bool _canSwipe = false;
         private bool _isFirstSwipeDone = false;
@@ -48,12 +46,12 @@ namespace _Scripts.Game
             {
                 foreach (ITile tile in slot.Tiles)
                 {
-                    FixInvalidateDrop(tile);
+                    FixMatchedDrop(tile);
                 }
             }
         }
         
-        void FixInvalidateDrop (ITile tile)
+        void FixMatchedDrop (ITile tile)
         {
             while (_matchChecker.CheckMatch(tile,Axis.all))
             {
@@ -65,7 +63,6 @@ namespace _Scripts.Game
         {
             if (!_canSwipe) return;
             
-            // Screen position to world position.
             Vector3 wPos = Camera.main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, Camera.main.nearClipPlane));
 
             ITile sourceTile = GetTile(Mathf.RoundToInt(wPos.x), Mathf.RoundToInt(wPos.y));
@@ -83,7 +80,7 @@ namespace _Scripts.Game
             var action = new KeyValuePair<ITile, ITile>(sourceTile, targetTile);
             _swipeActions.Add(action);
 
-            if (_swipeActions.Count == 1) // If there is no animation, we start the new process
+            if (_swipeActions.Count == 1) // If this is the first in queue
             {
                 ProcessNextAction();
             }
@@ -98,34 +95,30 @@ namespace _Scripts.Game
             }
             return true;
         }
-
-
-        //Private Methods....................................
+        
         private void ProcessNextAction()
         {
             if (_swipeActions.Count == 0) return;
 
             var swipeAction = _swipeActions.First();
-            _swipeActions.RemoveAt(0); // İşlem başladığı için listeden kaldırıyoruz.
+            _swipeActions.RemoveAt(0);
 
             ITile sourceTile = swipeAction.Key;
             ITile targetTile = swipeAction.Value;
 
             if (sourceTile == null || targetTile == null || sourceTile.GetDrop() == null || targetTile.GetDrop() == null)
             {
-                ProcessNextAction(); // Sonraki işlemi başlat
+                ProcessNextAction();
                 return;
             }
 
             _isAnimating = true;
-
-            _processActionSequence = DOTween.Sequence();
+            
             _swipeAnimationSequence = DOTween.Sequence();
-
-            // İlk swipe animasyonu tamamlandığında tetiklenir
+            
             _swipeAnimationSequence.OnComplete(() =>
             {
-                // Eşleşme kontrolü
+                
                 ISet<ITile> explosions = GetExplosionSet(sourceTile, targetTile);
 
                 if (explosions.Count > 0)
@@ -134,24 +127,11 @@ namespace _Scripts.Game
                     {
                         tile.GetDrop().Explode();
                     }
-                    /*// Patlamalar gibi animasyonları tetikle
-                    TriggerExplosions(() =>
-                    {
-                        // Patlama tamamlandığında
-                        _isAnimating = false;
-
-                        // Sıradaki işlemi başlat
-                        if (_swipeActions.Count > 0)
-                        {
-                            ProcessNextAction();
-                        }
-                    });*/
                     GameManager.Instance.OnGameWin();
                     CanNotMakeSwipe();
                 }
                 else
                 {
-                    // Eğer eşleşme yoksa sıradaki işlemi başlat
                     _isAnimating = false;
                     if (_swipeActions.Count > 0)
                     {
@@ -159,20 +139,16 @@ namespace _Scripts.Game
                     }
                 }
             });
-
-            // Drop objelerini hareket ettir
+            
             sourceTile.Swap(targetTile, _swipeAnimationSequence);
         }
-
-        // Patlamalar için bir animasyon işlemi
+        
         private void TriggerExplosions(UnityAction onComplete)
         {
             var explosionSequence = DOTween.Sequence();
-
-            // Burada patlama animasyonlarını ekle
-            explosionSequence.AppendInterval(0.5f); // Örneğin, 0.5 saniyelik bir patlama animasyonu
-
-            // Animasyon tamamlandığında callback'i çağır
+            
+            explosionSequence.AppendInterval(0.5f);
+            
             explosionSequence.OnComplete(() => { onComplete?.Invoke(); });
         }
 

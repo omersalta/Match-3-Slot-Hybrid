@@ -7,6 +7,7 @@ namespace _Scripts.Game
     public class RandomDropCreator
     {
         private Dictionary<DropSO, int> _dropTypes;
+        private readonly int _minNumOfDropTypes = 3;
 
         public RandomDropCreator(List<DropSO> allDropTypes)
         {
@@ -24,18 +25,15 @@ namespace _Scripts.Game
         
         public void ChangeDrop(Drop drop)
         {
-            DropSO newDropType = GetRandomDropType();
-            if (drop == null || !_dropTypes.ContainsKey(drop.DropSO) || !_dropTypes.ContainsKey(newDropType))
+            if (drop == null || !_dropTypes.ContainsKey(drop.DropSO))
                 return;
             
             _dropTypes[drop.DropSO]--;
+            DropSO newDropType = GetRandomDropType();
             drop.ChangeColor(newDropType);
             _dropTypes[newDropType]++;
         }
         
-        
-        
-        //Private Methods....................................
         private void InitializeDropTypes(List<DropSO> allDropTypes)
         {
             _dropTypes = new Dictionary<DropSO, int>();
@@ -49,7 +47,7 @@ namespace _Scripts.Game
         private DropSO GetRandomDropType()
         {
             var incompleteDropTypes = _dropTypes
-                .Where(pair => pair.Value < 3)  // Drop türlerinin sayısını sınırlamak için
+                .Where(pair => pair.Value < _minNumOfDropTypes)
                 .Select(pair => pair.Key)
                 .ToList();
 

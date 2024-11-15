@@ -74,10 +74,10 @@ public class Drop : MonoBehaviour
 
     public void Kill()
     {
+        _tile?.ClearDrop();
         Destroy(gameObject);
     } 
     
-    //Private Methods....................................
     private void ShowSprite(bool show = true)
     {
         _dropVisual.GetComponent<SpriteRenderer>().enabled = show;

@@ -1,5 +1,4 @@
-﻿using System;
-using _Scripts.Game;
+﻿using _Scripts.Game;
 using DG.Tweening;
 using UnityEngine;
 

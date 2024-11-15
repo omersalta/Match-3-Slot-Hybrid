@@ -63,10 +63,14 @@ namespace _Scripts.Game
             {
                 foreach (var tile in slot.Tiles)
                 {
-                    
                     _randomDropCreator.SpawnDrop(tile);
                 }
             }
+        }
+
+        public void ChangeDrop(ITile tile)
+        {
+            _randomDropCreator.ChangeDrop(tile.GetDrop());
         }
 
         public virtual bool CanStop(ISlot slot)

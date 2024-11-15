@@ -54,20 +54,6 @@
                 verticalMatchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.up), Axis.vertical, color, verticalMatchedTiles); // up
                 verticalMatchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.down), Axis.vertical, color, verticalMatchedTiles); // down
                 
-                
-                // log each horizontal and vertical matched tiles with color (in a loop)
-                foreach (ITile matchedTile in horizontalMatchedTiles)
-                {
-                    Debug.Log("horizontalMatchedTile: " + matchedTile.GetDrop().GetColor());
-                } 
-                foreach (ITile matchedTile in verticalMatchedTiles)
-                {
-                    Debug.Log("verticalMatchedTile: " + matchedTile.GetDrop().GetColor());
-                } 
-
-                Debug.Log("horizontalMatchedTiles: " + horizontalMatchedTiles.Count);
-                Debug.Log("verticalMatchedTiles: " + verticalMatchedTiles.Count);
-                
                 if (horizontalMatchedTiles.Count > 2) {
                     matchedTiles.UnionWith(horizontalMatchedTiles);
                     matchCount += horizontalMatchCount;
