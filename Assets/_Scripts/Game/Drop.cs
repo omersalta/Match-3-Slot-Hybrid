@@ -11,25 +11,33 @@ public class Drop : MonoBehaviour
 
     public void SetTile(ITile tile)
     {
+        if (tile == null)
+        {
+            _tile = null;
+            return;
+        }
+        
         if (tile.HasDrop())
         {
-            Debug.LogError("Tile has already drop");
+            Debug.LogWarning("Tile has already drop");
         }
-        _tile?.ClearDrop();
+        
         _tile = tile;
+        _tile.ClearDrop();
         _tile.SetDrop(this);
     }
 
-    public void Move(ITile target,Sequence sequence,float duration, bool isHiddenMove = false)
+    public void Move(ITile target,Sequence sequence, float duration = 1f, bool isHiddenMove = false)
     {
-        _tile = null;
+        SetTile(null);
+        
         if (isHiddenMove)
         {
             ShowSprite(false);
         }
-
+        
         sequence.Join(
-            transform.DOMove(target.GetPosition(), duration).OnComplete(() => {
+            transform.DOMove(target.GetTransformPos(), duration).OnComplete(() => {
                 SetTile(target);
                 ShowSprite();
             }).SetEase(Ease.Linear)
@@ -49,12 +57,7 @@ public class Drop : MonoBehaviour
         drop._dropSo = DropSO;
         return drop;
     }
-
-    public void ShowSprite(bool show = true)
-    {
-        _dropVisual.GetComponent<SpriteRenderer>().enabled = show;
-    }
-
+    
     public dropColors GetColor()
     {
         return _dropSo.color;
@@ -65,6 +68,15 @@ public class Drop : MonoBehaviour
         _tile?.ClearDrop();
         SetTile(null);
         //todo explode animation
+    }
+    
+    
+    
+    
+    //Private Methods....................................
+    private void ShowSprite(bool show = true)
+    {
+        _dropVisual.GetComponent<SpriteRenderer>().enabled = show;
     }
     
 }

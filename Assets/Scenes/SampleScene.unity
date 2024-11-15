@@ -154,7 +154,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2109750603}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &103251959
 SpriteRenderer:
@@ -341,7 +341,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2109750603}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -845,7 +845,7 @@ Transform:
   m_Children:
   - {fileID: 683479519}
   m_Father: {fileID: 2109750603}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1658011284
 SpriteRenderer:
@@ -940,7 +940,7 @@ MonoBehaviour:
   onClickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2109750605}
+      - m_Target: {fileID: 2109750607}
         m_TargetAssemblyTypeName: Board, Assembly-CSharp
         m_MethodName: SpinButtonToggle
         m_Mode: 1
@@ -954,7 +954,7 @@ MonoBehaviour:
         m_CallState: 2
   Enable: 1
   _text: {fileID: 683479520}
-  _board: {fileID: 2109750605}
+  _board: {fileID: 2109750607}
 --- !u!1 &1915233224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1009,9 +1009,9 @@ MonoBehaviour:
   _tilePrefab: {fileID: 178266378269605463, guid: bcc99828c864fe0438d7c9f9e94c7368, type: 3}
   _slotPrefab: {fileID: 9178350311849458203, guid: 4c28753af7a781844b05805ed1a6b9a8, type: 3}
   _configurator: {fileID: 2109750606}
-  _board: {fileID: 2109750605}
+  _board: {fileID: 2109750607}
   _rowCount: 5
-  _cColumnCount: 5
+  _columnCount: 5
   SingleDropTime: 0.1
 --- !u!1 &1994131113
 GameObject:
@@ -1037,13 +1037,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1994131113}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 2109750603}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1994131115
 MonoBehaviour:
@@ -1064,8 +1064,8 @@ MonoBehaviour:
   onSwipeLeft:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2109750605}
-        m_TargetAssemblyTypeName: Board, Assembly-CSharp
+      - m_Target: {fileID: 2109750607}
+        m_TargetAssemblyTypeName: _Scripts.Game.Match3Manager, Assembly-CSharp
         m_MethodName: Swipe
         m_Mode: 0
         m_Arguments:
@@ -1079,8 +1079,8 @@ MonoBehaviour:
   onSwipeRight:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2109750605}
-        m_TargetAssemblyTypeName: Board, Assembly-CSharp
+      - m_Target: {fileID: 2109750607}
+        m_TargetAssemblyTypeName: _Scripts.Game.Match3Manager, Assembly-CSharp
         m_MethodName: Swipe
         m_Mode: 0
         m_Arguments:
@@ -1094,8 +1094,8 @@ MonoBehaviour:
   onSwipeUp:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2109750605}
-        m_TargetAssemblyTypeName: Board, Assembly-CSharp
+      - m_Target: {fileID: 2109750607}
+        m_TargetAssemblyTypeName: _Scripts.Game.Match3Manager, Assembly-CSharp
         m_MethodName: Swipe
         m_Mode: 0
         m_Arguments:
@@ -1109,8 +1109,8 @@ MonoBehaviour:
   onSwipeDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2109750605}
-        m_TargetAssemblyTypeName: Board, Assembly-CSharp
+      - m_Target: {fileID: 2109750607}
+        m_TargetAssemblyTypeName: _Scripts.Game.Match3Manager, Assembly-CSharp
         m_MethodName: Swipe
         m_Mode: 0
         m_Arguments:
@@ -1133,10 +1133,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2109750603}
-  - component: {fileID: 2109750605}
   - component: {fileID: 2109750606}
+  - component: {fileID: 2109750607}
   m_Layer: 0
-  m_Name: Board
+  m_Name: SpinMahchine_Match-3Board
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1154,33 +1154,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1994131114}
   - {fileID: 362356187}
   - {fileID: 103251958}
   - {fileID: 1658011282}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2109750605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109750602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff280828e4847324c99b0ba95e3c1716, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnSpinStart:
-    m_PersistentCalls:
-      m_Calls: []
-  OnSpinStop:
-    m_PersistentCalls:
-      m_Calls: []
-  OnSpinTryToStop:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &2109750606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,3 +1176,24 @@ MonoBehaviour:
   _slotsGradient: {fileID: 362356187}
   _maskObject: {fileID: 103251958}
   _spinButton: {fileID: 1658011282}
+--- !u!114 &2109750607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109750602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef55a9ed6d94284b1e1319b076ae7a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSpinStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSpinStop:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSpinTryToStop:
+    m_PersistentCalls:
+      m_Calls: []

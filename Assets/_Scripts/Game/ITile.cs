@@ -11,8 +11,8 @@ public interface ITile
     
     public void ClearDrop();
     
-    public Vector3 GetPosition();
+    public Vector3 GetTransformPos();
 
-    public Vector2Int GetCoordination();
+    public Vector2Int Pos { get; }
 
 }

@@ -10,7 +10,7 @@ namespace _Scripts
         
         private void Start()
         {
-            SetText("Press to Spin");
+            SetText("Spin");
             SetColor(defaultColor);
             _board.OnSpinStart.AddListener(OnSpinStart);
             _board.OnSpinStop.AddListener(OnSpinStop);
