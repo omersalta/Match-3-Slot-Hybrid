@@ -130,6 +130,7 @@ namespace _Scripts.Game
                             ProcessNextAction();
                         }
                     });*/
+                    GameManager.Instance.OnGameEnd();
                 }
                 else
                 {
