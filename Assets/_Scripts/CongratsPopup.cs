@@ -15,6 +15,7 @@ public class CongratsPopup : MonoBehaviour
 
     public void Initialize()
     {
+        _popupBGfirstValue = _popupBG.transform.localScale;
         Reset();
     }
     
@@ -23,6 +24,7 @@ public class CongratsPopup : MonoBehaviour
         _viusals.gameObject.SetActive(false);
         _viusals1.gameObject.SetActive(false);
         _viusals2.gameObject.SetActive(false);
+        _popupBG.transform.localScale = _popupBGfirstValue / 3f;
     }
 
     public void Congrats()
@@ -44,7 +46,6 @@ public class CongratsPopup : MonoBehaviour
             {
                 _viusals2.gameObject.SetActive(true);
                 _popupBG.gameObject.SetActive(true);
-                _popupBGfirstValue = _popupBG.transform.localScale;
                 _popupBG.transform.localScale = _popupBGfirstValue / 3f;
                 _popupBG.transform.DOScale(_popupBGfirstValue, 0.5f).SetEase(Ease.OutBounce);
             });

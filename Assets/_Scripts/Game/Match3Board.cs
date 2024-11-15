@@ -64,8 +64,6 @@ namespace _Scripts.Game
         public void Swipe(Vector2 pos, Vector2 dir)
         {
             if (!_canSwipe) return;
-
-   
             
             // Screen position to world position.
             Vector3 wPos = Camera.main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, Camera.main.nearClipPlane));
@@ -149,6 +147,7 @@ namespace _Scripts.Game
                         }
                     });*/
                     GameManager.Instance.OnGameWin();
+                    CanNotMakeSwipe();
                 }
                 else
                 {
