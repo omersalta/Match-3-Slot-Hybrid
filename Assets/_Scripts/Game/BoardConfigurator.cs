@@ -8,6 +8,7 @@ namespace _Scripts
         [SerializeField] private Transform _slotsGradient;
         [SerializeField] private Transform _maskObject;
         [SerializeField] private Transform _spinButton;
+        [SerializeField] private Transform _CongratsPopup;
         
         public Vector3 CenterPosition {  get; private set; }
         
@@ -18,8 +19,12 @@ namespace _Scripts
              //Set Board Elements Settings
             _slotsGradient.transform.position = CenterPosition;
             _maskObject.transform.position = CenterPosition;
+            _CongratsPopup.transform.position = CenterPosition;
+            
+            
             _slotsGradient.GetComponent<SpriteRenderer>().size = new Vector2(columnCount, rowCount);
             _maskObject.localScale = new Vector3(columnCount, rowCount, 0);
+            
             
             //Set Camera Settings
             float ratio = ((float)Screen.height / (float)Screen.width);

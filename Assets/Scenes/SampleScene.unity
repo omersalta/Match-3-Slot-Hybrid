@@ -812,6 +812,11 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!4 &1075510261 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3732660209371344396, guid: e150a9964e84ac44a830a01ea409509d, type: 3}
+  m_PrefabInstance: {fileID: 3732660210444703225}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1658011281
 GameObject:
   m_ObjectHideFlags: 0
@@ -954,6 +959,7 @@ MonoBehaviour:
         m_CallState: 2
   Enable: 1
   _text: {fileID: 683479520}
+  defaultColor: {r: 0, g: 0.9, b: 0, a: 0.9}
   _board: {fileID: 2109750607}
 --- !u!1 &1915233224
 GameObject:
@@ -1176,6 +1182,7 @@ MonoBehaviour:
   _slotsGradient: {fileID: 362356187}
   _maskObject: {fileID: 103251958}
   _spinButton: {fileID: 1658011282}
+  _CongratsPopup: {fileID: 1075510261}
 --- !u!114 &2109750607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1214,11 +1221,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3732660209371344396, guid: e150a9964e84ac44a830a01ea409509d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.68
       objectReference: {fileID: 0}
     - target: {fileID: 3732660209371344396, guid: e150a9964e84ac44a830a01ea409509d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.07
       objectReference: {fileID: 0}
     - target: {fileID: 3732660209371344396, guid: e150a9964e84ac44a830a01ea409509d, type: 3}
       propertyPath: m_LocalPosition.z

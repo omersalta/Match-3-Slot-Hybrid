@@ -2,7 +2,6 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 public class CustomButton : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class CustomButton : MonoBehaviour
     [SerializeField] private TextMeshPro _text;
     
     
-    protected Color defaultColor = Color.green * 0.9f;
+    [SerializeField] protected Color defaultColor = Color.green * 0.9f;
     
 
     void OnMouseDown()
@@ -30,7 +29,7 @@ public class CustomButton : MonoBehaviour
 
     void OnMouseOver()
     {
-        GetComponent<Renderer>().material.color = defaultColor*0.6f;
+        GetComponent<Renderer>().material.color = defaultColor*0.85f;
     }
 
     void OnMouseExit()
