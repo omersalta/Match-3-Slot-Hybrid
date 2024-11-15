@@ -1010,8 +1010,8 @@ MonoBehaviour:
   _slotPrefab: {fileID: 9178350311849458203, guid: 4c28753af7a781844b05805ed1a6b9a8, type: 3}
   _configurator: {fileID: 2109750606}
   _board: {fileID: 2109750607}
-  _rowCount: 5
-  _columnCount: 5
+  _rowCount: 7
+  _columnCount: 7
   SingleDropTime: 0.1
 --- !u!1 &1994131113
 GameObject:

@@ -26,6 +26,8 @@
 
         private int CheckMatchRecursive(ITile tile, Axis axis, dropColors color, ISet<ITile> matchedTiles)
         {
+            ITile Neighbor (ITile tile, Vector2Int offset) => _board.GetNeighborTile(tile, offset);
+            
             if (tile == null)
                 return 0;
             
@@ -40,47 +42,68 @@
             int matchCount = 1;
             if (axis == Axis.all)
             {
-                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.right), Axis.right, color, matchedTiles); // right
-                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.left), Axis.left, color, matchedTiles); // left
-                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.up), Axis.up, color, matchedTiles); // up
-                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.down), Axis.down, color, matchedTiles); // down
+
+                ISet<ITile> horizontalMatchedTiles = new HashSet<ITile>();
+                ISet<ITile> verticalMatchedTiles = new HashSet<ITile>();
+                int verticalMatchCount = 0;
+                int horizontalMatchCount = 0;
+
+                horizontalMatchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.right), Axis.horizontal, color, horizontalMatchedTiles); // right
+                horizontalMatchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.left), Axis.horizontal, color, horizontalMatchedTiles); // left
+                
+                verticalMatchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.up), Axis.vertical, color, verticalMatchedTiles); // up
+                verticalMatchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.down), Axis.vertical, color, verticalMatchedTiles); // down
+                
+                
+                // log each horizontal and vertical matched tiles with color (in a loop)
+                foreach (ITile matchedTile in horizontalMatchedTiles)
+                {
+                    Debug.Log("horizontalMatchedTile: " + matchedTile.GetDrop().GetColor());
+                } 
+                foreach (ITile matchedTile in verticalMatchedTiles)
+                {
+                    Debug.Log("verticalMatchedTile: " + matchedTile.GetDrop().GetColor());
+                } 
+
+                Debug.Log("horizontalMatchedTiles: " + horizontalMatchedTiles.Count);
+                Debug.Log("verticalMatchedTiles: " + verticalMatchedTiles.Count);
+                
+                if (horizontalMatchedTiles.Count > 2) {
+                    matchedTiles.UnionWith(horizontalMatchedTiles);
+                    matchCount += horizontalMatchCount;
+                }
+                if (verticalMatchedTiles.Count > 2)
+                {
+                    matchedTiles.UnionWith(verticalMatchedTiles);
+                    matchCount += verticalMatchCount;
+                }
             }
             else if (axis == Axis.LeftAndVertical)
             {
-                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.left), Axis.left, color, matchedTiles);
-                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.up), Axis.up, color, matchedTiles);
-                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.down), Axis.down, color, matchedTiles);
+                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.left), Axis.horizontal, color, matchedTiles);
+                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.up), Axis.vertical, color, matchedTiles);
+                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.down), Axis.vertical, color, matchedTiles);
             }
-            else if (axis == Axis.left)
-            {
-                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.left), Axis.left, color, matchedTiles);
+            else if (axis == Axis.horizontal)
+            { 
+                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.left), Axis.horizontal, color, matchedTiles);
+                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.right), Axis.horizontal, color, matchedTiles);
             }
-            else if (axis == Axis.right)
+            else if (axis == Axis.vertical)
             {
-                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.right), Axis.right, color, matchedTiles);
-            }
-            else if (axis == Axis.up)
-            {
-                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.up), Axis.up, color, matchedTiles);
-            }
-            else if (axis == Axis.down)
-            {
-                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.down), Axis.down, color, matchedTiles);
+                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.up), Axis.vertical, color, matchedTiles);
+                matchCount += CheckMatchRecursive(Neighbor(tile,Vector2Int.down), Axis.vertical, color, matchedTiles);
             }
 
             return matchCount;
-            
-            ITile Neighbor (ITile tile, Vector2Int offset) => _board.GetNeighborTile(tile, offset);
         }
 
     }
 
     public enum Axis
     {
-        left,
-        right,
-        up,
-        down,
+        horizontal,
+        vertical,
         all,
         LeftAndVertical
     }

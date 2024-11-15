@@ -39,6 +39,12 @@ namespace _Scripts
             
             transform.parent = parentTransform;
         }
+        
+        public void Reset()
+        {
+            _isSpinning = false;
+            _spinMinStopTile = 0;
+        }
       
         public void StartSpin()
         {
@@ -85,8 +91,8 @@ namespace _Scripts
                         _spinMinStopTile--;
                     }
                 }
-                SpinMove(_slotSingleSpinSequence);
             });
+            SpinMove(_slotSingleSpinSequence);
         }
 
         private void SpinMove(Sequence sequenceTween)

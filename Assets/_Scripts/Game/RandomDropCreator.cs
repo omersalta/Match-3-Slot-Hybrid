@@ -22,8 +22,9 @@ namespace _Scripts.Game
             _dropTypes[dropType]++;
         }
         
-        public void ChangeDrop(Drop drop, DropSO newDropType)
+        public void ChangeDrop(Drop drop)
         {
+            DropSO newDropType = GetRandomDropType();
             if (drop == null || !_dropTypes.ContainsKey(drop.DropSO) || !_dropTypes.ContainsKey(newDropType))
                 return;
             
@@ -31,8 +32,6 @@ namespace _Scripts.Game
             drop.ChangeColor(newDropType);
             _dropTypes[newDropType]++;
         }
-        
-        
         
         
         

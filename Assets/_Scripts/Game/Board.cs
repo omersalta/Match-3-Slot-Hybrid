@@ -7,7 +7,7 @@ namespace _Scripts.Game
 {
     public class Board : MonoBehaviour
     {
-        private List<ISlot> _slots;
+        protected List<ISlot> _slots;
         private bool _isSpinning = false;
 
         public int RowCount { get; private set; }
@@ -17,7 +17,7 @@ namespace _Scripts.Game
         public UnityEvent OnSpinStop;
         public UnityEvent OnSpinTryToStop;
 
-        private RandomDropCreator _randomDropCreator;
+        protected RandomDropCreator _randomDropCreator;
         
         public void Initialize(Transform slotPrefab, Transform tilePrefab, int rowCount = 5, int columnCount = 5)
         {

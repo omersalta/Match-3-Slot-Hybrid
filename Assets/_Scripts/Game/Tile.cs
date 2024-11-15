@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using _Scripts.Game;
+using DG.Tweening;
+using UnityEngine;
 
 public class Tile : MonoBehaviour, ITile
 {
@@ -17,16 +19,18 @@ public class Tile : MonoBehaviour, ITile
         return this;
     }
 
-    public void Interact(Tile tile)
+    public void Swap(ITile targetTile, Sequence sequence)
     {
-        //todo make swap
+        GetDrop()?.Move(targetTile, sequence);
+        ClearDrop();
+        targetTile.GetDrop()?.Move(this, sequence);
+        targetTile.ClearDrop();
     }
 
     public void SetDrop(Drop drop)
     {
         _currentDrop = drop;
         drop.transform.parent = transform;
-        //drop.transform.localPosition = Vector3.zero;
     }
 
     public Drop GetDrop()

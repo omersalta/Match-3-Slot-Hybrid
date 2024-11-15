@@ -1,18 +1,23 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using DG.Tweening;
 using UnityEngine;
 
-public interface ITile
+namespace _Scripts.Game
 {
-    public void SetDrop(Drop drop);
+    public interface ITile
+    {
+        public void SetDrop(Drop drop);
     
-    public bool HasDrop();
+        public bool HasDrop();
 
-    public Drop GetDrop();
+        public Drop GetDrop();
     
-    public void ClearDrop();
+        public void ClearDrop();
     
-    public Vector3 GetTransformPos();
+        public Vector3 GetTransformPos();
 
-    public Vector2Int Pos { get; }
+        public Vector2Int Pos { get; }
 
+        public void Swap(ITile targetTile, Sequence sequence);
+
+    }
 }

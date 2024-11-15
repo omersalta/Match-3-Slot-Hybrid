@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using _Scripts.Game;
+using DG.Tweening;
 using UnityEngine;
 
 public class Drop : MonoBehaviour
@@ -67,6 +68,7 @@ public class Drop : MonoBehaviour
     {
         _tile?.ClearDrop();
         SetTile(null);
+        ShowSprite(false);
         //todo explode animation
     }
     
