@@ -11,19 +11,22 @@ public class CustomButton : MonoBehaviour
     
     
     [SerializeField] protected Color defaultColor = Color.green * 0.9f;
+
+    public void SetEnable(bool value)
+    {
+        Enable = value;
+    }
     
 
     void OnMouseDown()
     {
+        transform.localScale = Vector3.one;
+        DOTween.Kill(transform);
+        
         if (Enable)
         {
-            transform.DOScale(transform.localScale / 2, 0.2f).OnComplete(() =>
-            {
-                transform.DOScale(Vector3.one, 0.2f);
-                onClickEvent?.Invoke();
-            });
+            onClickEvent?.Invoke();
         }
-            
     }
 
     void OnMouseOver()

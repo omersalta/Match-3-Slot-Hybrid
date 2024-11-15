@@ -69,7 +69,6 @@ namespace _Scripts
             _slotSingleSpinSequence = DOTween.Sequence();
             _slotSingleSpinSequence.OnComplete(() =>
             {
-                
                 if (_isSpinning)
                 {
                     SingleSpinRecursion();

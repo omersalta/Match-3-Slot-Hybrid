@@ -39,9 +39,12 @@ namespace _Scripts.Game
         
         public void OnGameReset()
         {
-            _board.Reset();
-            _congratsPopup.Reset();
-            _spinButton.Reset();
+            DOVirtual.DelayedCall(0.3f, () =>
+            {
+                _board.Reset();
+                _congratsPopup.Reset();
+                _spinButton.Reset();
+            });
         }
     
     }
