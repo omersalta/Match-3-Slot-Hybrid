@@ -94,7 +94,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4704806157402378420}
   - component: {fileID: -4553188079459476161}
-  - component: {fileID: -7888308472916045112}
   m_Layer: 0
   m_Name: Drop
   m_TagString: Untagged
@@ -132,15 +131,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dropSo: {fileID: 11400000, guid: 9711477a9e2a5234794db70f198c64a2, type: 2}
   _dropVisual: {fileID: 4704806155720051256}
---- !u!114 &-7888308472916045112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4704806157402378427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d6f0ec84bc54bb4f87128c78eee50fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
