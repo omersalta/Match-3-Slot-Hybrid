@@ -133,6 +133,7 @@ namespace _Scripts.Game
                     GameManager.Instance.OnGameWin();
                     CanNotMakeSwipe();
                     Debug.Log("No moves left");
+                    _swipeActions.Clear();
                 }
                 
                 if (_swipeActions.Count > 0)
