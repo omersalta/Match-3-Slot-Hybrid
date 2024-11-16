@@ -66,10 +66,10 @@ namespace _Scripts.Game
             Vector3 wPos = Camera.main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, Camera.main.nearClipPlane));
 
             ITile sourceTile = GetTile(Mathf.RoundToInt(wPos.x), Mathf.RoundToInt(wPos.y));
-            if (sourceTile == null || sourceTile.GetDrop() == null) return;
+            if (sourceTile == null) return;
 
             ITile targetTile = GetTile(Mathf.RoundToInt(wPos.x + dir.x), Mathf.RoundToInt(wPos.y + dir.y));
-            if (targetTile == null || targetTile.GetDrop() == null) return;
+            if (targetTile == null) return;
             
             if (_isFirstSwipeDone == false)
             {
@@ -101,16 +101,17 @@ namespace _Scripts.Game
             if (_swipeActions.Count == 0) return;
 
             var swipeAction = _swipeActions.First();
-            _swipeActions.RemoveAt(0);
 
             ITile sourceTile = swipeAction.Key;
             ITile targetTile = swipeAction.Value;
 
+            /*
             if (sourceTile == null || targetTile == null || sourceTile.GetDrop() == null || targetTile.GetDrop() == null)
             {
                 ProcessNextAction();
                 return;
             }
+            */
 
             _isAnimating = true;
             
@@ -118,8 +119,8 @@ namespace _Scripts.Game
             
             _swipeAnimationSequence.OnComplete(() =>
             {
-                
                 ISet<ITile> explosions = GetExplosionSet(sourceTile, targetTile);
+                _swipeActions.RemoveAt(0);
 
                 if (explosions.Count > 0)
                 {
