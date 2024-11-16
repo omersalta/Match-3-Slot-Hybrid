@@ -24,9 +24,9 @@ namespace _Scripts.Game
     
         public float SingleDropTime;
     
-        void Awake()
+        public new void Awake()
         {
-            //set gradient and camera position 
+            base.Awake();
             _board.Initialize(_slotPrefab, _tilePrefab, _rowCount,_columnCount);
             _configurator.Initialize(_columnCount, _rowCount);
             _congratsPopup.Initialize();

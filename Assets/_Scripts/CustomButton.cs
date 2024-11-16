@@ -39,7 +39,7 @@ public class CustomButton : MonoBehaviour
         GetComponent<Renderer>().material.color = defaultColor;
     }
 
-    protected void SetColor(Color color)
+    public void SetColor(Color color)
     {
         GetComponent<Renderer>().material.color = color;
         defaultColor = color;

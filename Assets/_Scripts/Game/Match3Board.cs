@@ -16,7 +16,7 @@ namespace _Scripts.Game
         protected MatchChecker _matchChecker;
         public UnityEvent OnMatch3Start;
         
-        public void Initialize(Transform slotPrefab, Transform tilePrefab, int rowCount = 5, int columnCount = 5)
+        public new void Initialize(Transform slotPrefab, Transform tilePrefab, int rowCount = 5, int columnCount = 5)
         {
             base.Initialize(slotPrefab, tilePrefab, rowCount, columnCount);
             _matchChecker = new MatchChecker(this, rowCount, columnCount);
@@ -29,7 +29,7 @@ namespace _Scripts.Game
             OnSpinStart.AddListener(CanNotMakeSwipe);
         }
 
-        public void Reset()
+        public new void Reset()
         {
             base.Reset();
             FixBoard();
