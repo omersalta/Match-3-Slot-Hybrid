@@ -66,7 +66,7 @@ namespace _Scripts.Game
             Vector3 wPos = Camera.main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, Camera.main.nearClipPlane));
 
             ITile sourceTile = GetTile(Mathf.RoundToInt(wPos.x), Mathf.RoundToInt(wPos.y));
-            if (sourceTile == null) return;
+            if (sourceTile == null && sourceTile.GetDrop() == null) return;
 
             ITile targetTile = GetTile(Mathf.RoundToInt(wPos.x + dir.x), Mathf.RoundToInt(wPos.y + dir.y));
             if (targetTile == null) return;
@@ -104,19 +104,10 @@ namespace _Scripts.Game
 
             ITile sourceTile = swipeAction.Key;
             ITile targetTile = swipeAction.Value;
-
-            /*
-            if (sourceTile == null || targetTile == null || sourceTile.GetDrop() == null || targetTile.GetDrop() == null)
-            {
-                ProcessNextAction();
-                return;
-            }
-            */
-
+            
             _isAnimating = true;
             
             _swipeAnimationSequence = DOTween.Sequence();
-            
             _swipeAnimationSequence.OnComplete(() =>
             {
                 ISet<ITile> explosions = GetExplosionSet(sourceTile, targetTile);
@@ -126,31 +117,34 @@ namespace _Scripts.Game
                 {
                     foreach (ITile tile in explosions)
                     {
+                        _randomDropCreator.RemoveDrop(tile.GetDrop().DropSO);
                         tile.GetDrop().Explode();
                     }
-                    GameManager.Instance.OnGameWin();
-                    CanNotMakeSwipe();
                 }
                 else
                 {
                     _isAnimating = false;
-                    if (_swipeActions.Count > 0)
-                    {
-                        ProcessNextAction();
-                    }
+                    
                 }
+                
+                if (!CheckIfValidMovesLeft())
+                {
+                    // todo no moves left pop-up
+                    GameManager.Instance.OnGameWin();
+                    CanNotMakeSwipe();
+                    Debug.Log("No moves left");
+                }
+                
+                if (_swipeActions.Count > 0)
+                {
+                    ProcessNextAction();
+                }
+                
             });
             
             sourceTile.Swap(targetTile, _swipeAnimationSequence);
-        }
-        
-        private void TriggerExplosions(UnityAction onComplete)
-        {
-            var explosionSequence = DOTween.Sequence();
-            
-            explosionSequence.AppendInterval(0.5f);
-            
-            explosionSequence.OnComplete(() => { onComplete?.Invoke(); });
+            if (_swipeAnimationSequence.active)
+                DOTween.Kill(_swipeAnimationSequence);
         }
 
         private ISet<ITile> GetExplosionSet (ITile sourceTile, ITile targetTile)
@@ -182,6 +176,11 @@ namespace _Scripts.Game
         private void CanNotMakeSwipe()
         {
             _canSwipe = false;
+        }
+
+        private bool CheckIfValidMovesLeft()
+        {
+             return _randomDropCreator.CheckIfEnoughNumOfDropsFromAnyColor();
         }
 
     }

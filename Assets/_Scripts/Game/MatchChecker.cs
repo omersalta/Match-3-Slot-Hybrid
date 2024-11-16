@@ -18,6 +18,8 @@
         
         public bool CheckMatch(ITile tile, Axis axis, ISet<ITile> visited = null)
         {
+            if (tile.GetDrop() == null)
+                return false;
             if(visited == null)
                 visited = new HashSet<ITile>();
             int matchCount = CheckMatchRecursive(tile, axis, tile.GetDrop().GetColor(), visited);
@@ -83,7 +85,7 @@
 
             return matchCount;
         }
-
+        
     }
 
     public enum Axis

@@ -63,7 +63,17 @@ namespace _Scripts.Game
 
             return selectedDropSO;
         }
-        
+
+        public bool CheckIfEnoughNumOfDropsFromAnyColor()
+        {
+            return _dropTypes
+                .Any(pair => pair.Value >= _minNumOfDropTypes);
+        }
+
+        public void RemoveDrop(DropSO dropSo)
+        {
+            _dropTypes[dropSo]--;
+        }
     }
 
 }

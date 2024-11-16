@@ -18,12 +18,17 @@ public class Tile : MonoBehaviour, ITile
         
         return this;
     }
-
+    
     public void Swap(ITile targetTile, Sequence sequence)
     {
-        GetDrop()?.Move(targetTile, sequence);
+        var myDrop = GetDrop();
+        if (myDrop)
+            myDrop.Move(targetTile, sequence);
         ClearDrop();
-        targetTile.GetDrop()?.Move(this, sequence);
+
+        var targetDrop = targetTile.GetDrop();
+        if (targetDrop)
+            targetDrop.Move(this, sequence);
         targetTile.ClearDrop();
     }
 
