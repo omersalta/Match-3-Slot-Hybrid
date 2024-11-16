@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using _Scripts.Game;
 using DG.Tweening;
 using UnityEngine;
 
@@ -11,20 +12,24 @@ public class CongratsPopup : MonoBehaviour
     [SerializeField] private Transform _viusals2;
     [SerializeField] private SpriteRenderer _darker;
     [SerializeField] private SpriteRenderer _popupBG;
+    [SerializeField] private CustomButton _resetButton;
+    
+    private bool _canReset;
     private Vector3 _popupBGfirstValue;
 
     public void Initialize()
     {
-        _popupBGfirstValue = _popupBG.transform.localScale;
         Reset();
     }
-    
-    public void Reset ()
+
+    public void Reset()
     {
+        _canReset = true;
+        _popupBGfirstValue = _popupBG.transform.localScale;
+        _popupBG.transform.localScale = _popupBGfirstValue / 3f;
         _viusals.gameObject.SetActive(false);
         _viusals1.gameObject.SetActive(false);
         _viusals2.gameObject.SetActive(false);
-        _popupBG.transform.localScale = _popupBGfirstValue / 3f;
     }
 
     public void Congrats()
@@ -50,5 +55,15 @@ public class CongratsPopup : MonoBehaviour
                 _popupBG.transform.DOScale(_popupBGfirstValue, 0.5f).SetEase(Ease.OutBounce);
             });
         });
+    }
+    
+    public void RestartGame()
+    {
+        if (_canReset)
+        {
+            _canReset = false;
+            _resetButton.SetColor(Color.white);
+            GameManager.Instance.OnGameReset();
+        }
     }
 }

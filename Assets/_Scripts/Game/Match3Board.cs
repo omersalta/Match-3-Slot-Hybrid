@@ -14,7 +14,7 @@ namespace _Scripts.Game
         private bool _canSwipe = false;
         private bool _isFirstSwipeDone = false;
         protected MatchChecker _matchChecker;
-        public UnityEvent OnMatch3Start;
+        public UnityEvent OnFirstMatch3SwipeStart;
         
         public new void Initialize(Transform slotPrefab, Transform tilePrefab, int rowCount = 5, int columnCount = 5)
         {
@@ -74,7 +74,7 @@ namespace _Scripts.Game
             if (_isFirstSwipeDone == false)
             {
                 _isFirstSwipeDone = true;
-                OnMatch3Start?.Invoke();
+                OnFirstMatch3SwipeStart?.Invoke();
             }
             
             var action = new KeyValuePair<ITile, ITile>(sourceTile, targetTile);

@@ -42,7 +42,6 @@ namespace _Scripts.Game
         protected void Reset()
         {
             _isSpinning = false;
-            
             GenerateBoard();
         }
 

@@ -15,7 +15,7 @@ namespace _Scripts
             _board.OnSpinStart.AddListener(OnSpinStart);
             _board.OnSpinStop.AddListener(OnSpinStop);
             _board.OnSpinTryToStop.AddListener(OnSpinTryStop);
-            _board.OnMatch3Start.AddListener(OnMatch3);
+            _board.OnFirstMatch3SwipeStart.AddListener(OnMatch3);
         }
 
         private void OnSpinStart ()

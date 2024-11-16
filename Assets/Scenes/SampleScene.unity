@@ -961,6 +961,17 @@ MonoBehaviour:
   _text: {fileID: 683479520}
   defaultColor: {r: 0, g: 0.9, b: 0, a: 0.9}
   _board: {fileID: 2109750607}
+--- !u!114 &1831711483 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7536226176498677544, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
+  m_PrefabInstance: {fileID: 4385750976552212682}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dbcbb7bde8e31f488c93e839682f6c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1900156504
 GameObject:
   m_ObjectHideFlags: 0
@@ -1351,7 +1362,7 @@ MonoBehaviour:
   OnSpinTryToStop:
     m_PersistentCalls:
       m_Calls: []
-  OnMatch3Start:
+  OnFirstMatch3SwipeStart:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1001 &4385750976552212682
@@ -1410,9 +1421,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7536226176498677544, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
+      propertyPath: onClickEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7536226176498677544, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
       propertyPath: onClickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1915233226}
+      objectReference: {fileID: 5848985204888646470}
+    - target: {fileID: 7536226176498677544, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
+      propertyPath: onClickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 7536226176498677544, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
+      propertyPath: onClickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CongratsPopup, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7536226176498677544, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
+      propertyPath: onClickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7923683645310675852, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
+      propertyPath: _resetButton
+      value: 
+      objectReference: {fileID: 1831711483}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
 --- !u!114 &5848985204888646470 stripped
