@@ -1163,9 +1163,10 @@ MonoBehaviour:
   _slotMachineBoard: {fileID: 2109750607}
   _congratsPopup: {fileID: 5848985204888646470}
   _spinButton: {fileID: 1658011286}
-  _rowCount: 3
-  _columnCount: 3
+  _rowCount: 5
+  _columnCount: 5
   SingleDropTime: 0.05
+  SwapTime: 0.4
 --- !u!1 &1994131113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,6 +1362,10 @@ PrefabInstance:
     - target: {fileID: 4385750975477801791, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385750976613578801, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}

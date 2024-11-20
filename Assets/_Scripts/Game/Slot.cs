@@ -25,7 +25,6 @@ namespace _Scripts
         public void Initialize(SlotMachineBoard slotMachineBoard, int rowCount, int columnIndex, Transform tilePrefab, Transform parentTransform)
         {
             _slotIndex = columnIndex;
-            _rowCount = rowCount;
             transform.localPosition += new Vector3(columnIndex, 0, 0);
             _slotMachineBoard = slotMachineBoard;
             
@@ -38,7 +37,20 @@ namespace _Scripts
             
             transform.parent = parentTransform;
         }
-        
+        public void Initialize(SlotMachineBoard slotMachineBoard, int columnIndex, List<ITile> slotsTiles, Transform parentTransform)
+        {
+            _slotIndex = columnIndex;
+            transform.localPosition += new Vector3(columnIndex, 0, 0);
+            _slotMachineBoard = slotMachineBoard;
+            Tiles = slotsTiles;
+            transform.parent = parentTransform;
+            
+            foreach (ITile tile in Tiles)
+            {
+                tile.SetParent(transform);
+            }
+        }
+
         public void Reset()
         {
             _isSpinning = false;

@@ -14,22 +14,29 @@ public class Tile : MonoBehaviour, ITile
     {
         _pos = new Vector2Int(x, y);
         transform.position = new Vector3(x, y, 0);
-        transform.parent = parent;
+        SetParent(parent);
         
         return this;
     }
-    
+    public void SetParent(Transform parent)
+    {
+        transform.parent = parent;
+    }
+
     public void Swap(ITile targetTile, Sequence sequence)
     {
         var myDrop = GetDrop();
         if (myDrop)
-            myDrop.Move(targetTile, sequence);
-        ClearDrop();
-
+        {
+            myDrop.Move(targetTile, sequence,GameManager.Instance.SwapTime);
+            ClearDrop();
+        }
         var targetDrop = targetTile.GetDrop();
         if (targetDrop)
-            targetDrop.Move(this, sequence);
-        targetTile.ClearDrop();
+        {
+            targetDrop.Move(this, sequence,GameManager.Instance.SwapTime);
+            targetTile.ClearDrop();
+        }
     }
 
     public void SetDrop(Drop drop)

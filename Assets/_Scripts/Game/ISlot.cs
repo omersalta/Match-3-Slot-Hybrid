@@ -10,6 +10,7 @@ namespace _Scripts.Game
         UnityEvent<int> OnStopEvent { get; }
     
         void Initialize(SlotMachineBoard slotMachineBoard, int rowCount, int columnIndex, Transform tilePrefab, Transform parentTransform);
+        void Initialize(SlotMachineBoard slotMachineBoard, int columnIndex, List<ITile> slotsTiles,  Transform parentTransform);
         void StartSpin();
         void TryToStop();
     }

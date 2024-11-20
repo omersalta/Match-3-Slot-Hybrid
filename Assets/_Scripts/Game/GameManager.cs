@@ -14,7 +14,6 @@ namespace _Scripts.Game
         
         [SerializeField] private Transform _tilePrefab;
         [SerializeField] private Transform _slotPrefab;
-        [FormerlySerializedAs("_inputState")]
         [SerializeField] private InputHandler _inputHandler;
         public InputHandler InputHandler => _inputHandler;
     
@@ -27,11 +26,12 @@ namespace _Scripts.Game
         [SerializeField] private int _columnCount = 6;
     
         public float SingleDropTime;
+        public float SwapTime;
     
         public new void Awake()
         {
             base.Awake();
-            _slotMachineBoard.Initialize(_slotPrefab, _tilePrefab, _rowCount,_columnCount);
+            _slotMachineBoard.Initialize(_slotPrefab,_tilePrefab,_rowCount,_columnCount);
             _configurator.Initialize(_columnCount, _rowCount);
             _congratsPopup.Initialize();
         }

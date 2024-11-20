@@ -19,5 +19,8 @@ namespace _Scripts.Game
 
         public void Swap(ITile targetTile, Sequence sequence);
 
+        public Tile Initialize(int x, int y, Transform parent);
+        
+        public void SetParent(Transform parent);
     }
 }

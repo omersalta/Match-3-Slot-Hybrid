@@ -52,10 +52,10 @@ namespace _Scripts.Game
             Vector3 wPos = Camera.main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, Camera.main.nearClipPlane));
 
             ITile sourceTile = _board.GetTile(Mathf.RoundToInt(wPos.x), Mathf.RoundToInt(wPos.y));
-            if (sourceTile == null || sourceTile.GetDrop() == null) return;
+            if (sourceTile == null) return;
 
             ITile targetTile = _board.GetTile(Mathf.RoundToInt(wPos.x + dir.x), Mathf.RoundToInt(wPos.y + dir.y));
-            if (targetTile == null || targetTile.GetDrop() == null) return;
+            if (targetTile == null) return;
             
             if (_isFirstSwipeDone == false)
             {

@@ -10,10 +10,10 @@ namespace _Scripts.Game
         protected SwipeManager _swipeManager;
         public UnityEvent OnFirstMatch3SwipeStart;
         
-        public new void Initialize(Transform slotPrefab, Transform tilePrefab, int rowCount = 5, int columnCount = 5)
+        public new void Initialize(Transform slotPrefab, Transform tilePrefab, int row, int column)
         {
-            base.Initialize(slotPrefab, tilePrefab, rowCount, columnCount);
-            _matchChecker = new MatchChecker(this, rowCount, columnCount);
+            base.Initialize(slotPrefab, tilePrefab, row, column);
+            _matchChecker = new MatchChecker(this);
             _swipeManager = new SwipeManager(this, GameManager.Instance.InputHandler, OnFirstMatch3SwipeStart);
             FixBoard();
         }
@@ -47,7 +47,7 @@ namespace _Scripts.Game
         {
             while (_matchChecker.CheckMatch(tile,Axis.all))
             {
-                _randomDropCreator.ChangeDrop(tile.GetDrop());
+                randomDropCreator.ChangeDrop(tile.GetDrop());
             }
         }
         
@@ -63,22 +63,22 @@ namespace _Scripts.Game
         
         public void TryToExplode (ITile sourceTile, ITile targetTile)
         {
-            ISet<ITile> ExplosionTiles = new HashSet<ITile>();
+            ISet<ITile> explosionTiles = new HashSet<ITile>();
             var sourceExplosions = GetExplosionSet(sourceTile);
             var targetExplosions = GetExplosionSet(targetTile);
             
             if (sourceExplosions?.Count > 0)
-                ExplosionTiles.UnionWith(sourceExplosions);
+                explosionTiles.UnionWith(sourceExplosions);
             if (targetExplosions?.Count > 0)
-                ExplosionTiles.UnionWith(targetExplosions);
+                explosionTiles.UnionWith(targetExplosions);
             
-            if (ExplosionTiles.Count <= 0)
+            if (explosionTiles.Count <= 0)
             {
                 return;
             }
             else
             {
-                foreach (ITile tile in ExplosionTiles)
+                foreach (ITile tile in explosionTiles)
                 {
                     Explode(tile);
                 }
@@ -98,13 +98,13 @@ namespace _Scripts.Game
         
         private void Explode(ITile tile)
         {
-            _randomDropCreator.RemoveDrop(tile.GetDrop().DropSO);
+            randomDropCreator.RemoveDrop(tile.GetDrop().DropSO);
             tile.GetDrop().Explode();
         }
         
         private void CheckIfValidMovesLeft()
         {
-            if (!_randomDropCreator.CheckIfEnoughNumOfDropsFromAnyColor())
+            if (!randomDropCreator.CheckIfEnoughNumOfDropsFromAnyColor())
             {
                 GameManager.Instance.OnGameWin();
                 _swipeManager.CanNotMakeSwipe();

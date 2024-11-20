@@ -5,15 +5,11 @@
 
     public class MatchChecker
     {
-        private readonly int _rowCount;
-        private readonly int _columnCount;
         private readonly SlotMachineBoard _slotMachineBoard;
 
-        public MatchChecker(SlotMachineBoard slotMachineBoard, int rowCount, int columnCount)
+        public MatchChecker(SlotMachineBoard slotMachineBoard)
         {
             _slotMachineBoard = slotMachineBoard;
-            _rowCount = rowCount;
-            _columnCount = columnCount;
         }
         
         public bool CheckMatch(ITile tile, Axis axis, ISet<ITile> visited = null)
