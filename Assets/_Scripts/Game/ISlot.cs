@@ -9,7 +9,7 @@ namespace _Scripts.Game
         List<ITile> Tiles { get; }
         UnityEvent<int> OnStopEvent { get; }
     
-        void Initialize(Board board, int rowCount, int columnIndex, Transform tilePrefab, Transform parentTransform);
+        void Initialize(SlotMachineBoard slotMachineBoard, int rowCount, int columnIndex, Transform tilePrefab, Transform parentTransform);
         void StartSpin();
         void TryToStop();
     }

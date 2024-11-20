@@ -20,14 +20,14 @@ namespace _Scripts
         private int _spinMinStopTile = 0;
         readonly int  MinSpinStopTileOffset = 4;
         
-        private Board _board;
+        private SlotMachineBoard _slotMachineBoard;
         
-        public void Initialize(Board board, int rowCount, int columnIndex, Transform tilePrefab, Transform parentTransform)
+        public void Initialize(SlotMachineBoard slotMachineBoard, int rowCount, int columnIndex, Transform tilePrefab, Transform parentTransform)
         {
             _slotIndex = columnIndex;
             _rowCount = rowCount;
             transform.localPosition += new Vector3(columnIndex, 0, 0);
-            _board = board;
+            _slotMachineBoard = slotMachineBoard;
             
             Tiles = new List<ITile>();
             
@@ -75,7 +75,7 @@ namespace _Scripts
                 }
                 else
                 {
-                    bool canStop = _spinMinStopTile <= 0 && _board.CanStop(this);
+                    bool canStop = _spinMinStopTile <= 0 && _slotMachineBoard.CanStop(this);
                     
                     if (canStop)
                     {
@@ -105,7 +105,7 @@ namespace _Scripts
                 {
                     nextTile = Tiles.LastOrDefault();
                     isHidden = true;
-                    _board.ChangeDrop(tile);
+                    _slotMachineBoard.ChangeDrop(tile);
                 }
                 else
                 {

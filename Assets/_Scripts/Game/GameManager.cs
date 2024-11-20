@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utilities;
 
 namespace _Scripts.Game
@@ -13,9 +14,12 @@ namespace _Scripts.Game
         
         [SerializeField] private Transform _tilePrefab;
         [SerializeField] private Transform _slotPrefab;
+        [FormerlySerializedAs("_inputState")]
+        [SerializeField] private InputHandler _inputHandler;
+        public InputHandler InputHandler => _inputHandler;
     
         [SerializeField] private BoardConfigurator _configurator;
-        [SerializeField] private Match3Board _board;
+        [SerializeField] private Match3SlotMachineBoard _slotMachineBoard;
         [SerializeField] private CongratsPopup _congratsPopup;
         [SerializeField] private SpinButton _spinButton;
         
@@ -27,7 +31,7 @@ namespace _Scripts.Game
         public new void Awake()
         {
             base.Awake();
-            _board.Initialize(_slotPrefab, _tilePrefab, _rowCount,_columnCount);
+            _slotMachineBoard.Initialize(_slotPrefab, _tilePrefab, _rowCount,_columnCount);
             _configurator.Initialize(_columnCount, _rowCount);
             _congratsPopup.Initialize();
         }
@@ -41,7 +45,7 @@ namespace _Scripts.Game
         {
             DOVirtual.DelayedCall(0.3f, () =>
             {
-                _board.Reset();
+                _slotMachineBoard.Reset();
                 _congratsPopup.Reset();
                 _spinButton.Reset();
             });

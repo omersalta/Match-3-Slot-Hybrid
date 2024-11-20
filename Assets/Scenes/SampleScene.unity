@@ -154,7 +154,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2109750603}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &103251959
 SpriteRenderer:
@@ -341,7 +341,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2109750603}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -850,7 +850,7 @@ Transform:
   m_Children:
   - {fileID: 683479519}
   m_Father: {fileID: 2109750603}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1658011284
 SpriteRenderer:
@@ -960,18 +960,7 @@ MonoBehaviour:
   Enable: 1
   _text: {fileID: 683479520}
   defaultColor: {r: 0, g: 0.9, b: 0, a: 0.9}
-  _board: {fileID: 2109750607}
---- !u!114 &1831711483 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7536226176498677544, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
-  m_PrefabInstance: {fileID: 4385750976552212682}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dbcbb7bde8e31f488c93e839682f6c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _slotMachineBoard: {fileID: 2109750607}
 --- !u!1 &1900156504
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,13 +1158,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9711477a9e2a5234794db70f198c64a2, type: 2}
   _tilePrefab: {fileID: 178266378269605463, guid: bcc99828c864fe0438d7c9f9e94c7368, type: 3}
   _slotPrefab: {fileID: 9178350311849458203, guid: 4c28753af7a781844b05805ed1a6b9a8, type: 3}
+  _inputHandler: {fileID: 1994131115}
   _configurator: {fileID: 2109750606}
-  _board: {fileID: 2109750607}
+  _slotMachineBoard: {fileID: 2109750607}
   _congratsPopup: {fileID: 5848985204888646470}
   _spinButton: {fileID: 1658011286}
-  _rowCount: 5
-  _columnCount: 5
-  SingleDropTime: 0.07
+  _rowCount: 3
+  _columnCount: 3
+  SingleDropTime: 0.05
 --- !u!1 &1994131113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,7 +1177,7 @@ GameObject:
   - component: {fileID: 1994131114}
   - component: {fileID: 1994131115}
   m_Layer: 0
-  m_Name: InputState
+  m_Name: InputHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1205,8 +1195,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2109750603}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1994131115
 MonoBehaviour:
@@ -1220,70 +1210,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20dfa4392c9d46e995a3b0a62251aa67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swipeThreshold: 50
+  swipeThreshold: 1
+  tapThreshold: 3
   onTap:
     m_PersistentCalls:
       m_Calls: []
   onSwipeLeft:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2109750607}
-        m_TargetAssemblyTypeName: _Scripts.Game.Match3Manager, Assembly-CSharp
-        m_MethodName: Swipe
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onSwipeRight:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2109750607}
-        m_TargetAssemblyTypeName: _Scripts.Game.Match3Manager, Assembly-CSharp
-        m_MethodName: Swipe
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onSwipeUp:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2109750607}
-        m_TargetAssemblyTypeName: _Scripts.Game.Match3Manager, Assembly-CSharp
-        m_MethodName: Swipe
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onSwipeDown:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2109750607}
-        m_TargetAssemblyTypeName: _Scripts.Game.Match3Manager, Assembly-CSharp
-        m_MethodName: Swipe
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onMouseUp:
     m_PersistentCalls:
       m_Calls: []
@@ -1318,12 +1261,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1900156505}
-  - {fileID: 1994131114}
   - {fileID: 362356187}
   - {fileID: 103251958}
   - {fileID: 1658011282}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2109750606
 MonoBehaviour:
@@ -1378,7 +1320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4385750975477801791, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4385750975477801791, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1420,30 +1362,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7536226176498677544, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
-      propertyPath: onClickEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7536226176498677544, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
-      propertyPath: onClickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 5848985204888646470}
-    - target: {fileID: 7536226176498677544, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
-      propertyPath: onClickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RestartGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 7536226176498677544, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
-      propertyPath: onClickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CongratsPopup, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7536226176498677544, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
-      propertyPath: onClickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7923683645310675852, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
-      propertyPath: _resetButton
-      value: 
-      objectReference: {fileID: 1831711483}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21231f486e9ef4345a212de496dd0fb7, type: 3}
 --- !u!114 &5848985204888646470 stripped

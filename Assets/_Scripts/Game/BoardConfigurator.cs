@@ -16,7 +16,7 @@ namespace _Scripts
         {
              CenterPosition = new Vector2((columnCount-1)/2f,(rowCount-1)/2f);
             
-             //Set Board Elements Settings
+             //Set SlotMachineBoard Elements Settings
             _slotsGradient.transform.position = CenterPosition;
             _maskObject.transform.position = CenterPosition;
             _CongratsPopup.transform.position = CenterPosition;
@@ -31,7 +31,7 @@ namespace _Scripts
             Camera.main.orthographicSize = columnCount * ( ratio / 2f);
             Camera.main.transform.position = new Vector3(CenterPosition.x, CenterPosition.y,Camera.main.transform.position.z);
             
-            _spinButton.transform.position = new Vector3(CenterPosition.y, -3,0);
+            _spinButton.transform.position = new Vector3(CenterPosition.y, -1.2f,0);
             
         }
     }

@@ -5005,6 +5005,7 @@ MonoBehaviour:
   _viusals2: {fileID: 3811468032126903988}
   _darker: {fileID: 1085442182063337407}
   _popupBG: {fileID: 4385750975600567631}
+  _resetButton: {fileID: 7536226176498677544}
 --- !u!1 &4385750975600567625
 GameObject:
   m_ObjectHideFlags: 0
@@ -20131,9 +20132,9 @@ MonoBehaviour:
   onClickEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: _Scripts.Game.GameManager, Assembly-CSharp
-        m_MethodName: OnGameReset
+      - m_Target: {fileID: 7923683645310675852}
+        m_TargetAssemblyTypeName: CongratsPopup, Assembly-CSharp
+        m_MethodName: RestartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

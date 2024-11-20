@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace _Scripts.Game
 {
-    public class Board : MonoBehaviour
+    public class SlotMachineBoard : MonoBehaviour
     {
         protected List<ISlot> _slots;
         protected bool _isSpinning = false;

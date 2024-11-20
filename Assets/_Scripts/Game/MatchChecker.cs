@@ -7,11 +7,11 @@
     {
         private readonly int _rowCount;
         private readonly int _columnCount;
-        private readonly Board _board;
+        private readonly SlotMachineBoard _slotMachineBoard;
 
-        public MatchChecker(Board board, int rowCount, int columnCount)
+        public MatchChecker(SlotMachineBoard slotMachineBoard, int rowCount, int columnCount)
         {
-            _board = board;
+            _slotMachineBoard = slotMachineBoard;
             _rowCount = rowCount;
             _columnCount = columnCount;
         }
@@ -28,7 +28,7 @@
 
         private int CheckMatchRecursive(ITile tile, Axis axis, dropColors color, ISet<ITile> matchedTiles)
         {
-            ITile Neighbor (ITile tile, Vector2Int offset) => _board.GetNeighborTile(tile, offset);
+            ITile Neighbor (ITile tile, Vector2Int offset) => _slotMachineBoard.GetNeighborTile(tile, offset);
             
             if (tile == null)
                 return 0;

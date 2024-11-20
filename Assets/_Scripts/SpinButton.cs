@@ -1,21 +1,22 @@
 ﻿using _Scripts.Game;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace _Scripts
 {
     public class SpinButton : CustomButton
     {
-        [SerializeField] private Match3Board _board;
+        [SerializeField] private Match3SlotMachineBoard _slotMachineBoard;
         
         private void Start()
         {
             SetText("Spin");
             SetColor(defaultColor);
-            _board.OnSpinStart.AddListener(OnSpinStart);
-            _board.OnSpinStop.AddListener(OnSpinStop);
-            _board.OnSpinTryToStop.AddListener(OnSpinTryStop);
-            _board.OnFirstMatch3SwipeStart.AddListener(OnMatch3);
+            _slotMachineBoard.OnSpinStart.AddListener(OnSpinStart);
+            _slotMachineBoard.OnSpinStop.AddListener(OnSpinStop);
+            _slotMachineBoard.OnSpinTryToStop.AddListener(OnSpinTryStop);
+            _slotMachineBoard.OnFirstMatch3SwipeStart.AddListener(OnMatch3);
         }
 
         private void OnSpinStart ()
